@@ -1,17 +1,29 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import { Shield } from 'lucide-react';
+import { Shield, Heart, Home, Car, Users, Briefcase } from 'lucide-react';
 
 export const AnimatedLoader = ({ onComplete }) => {
     const [show, setShow] = useState(true);
+    const [fadingOut, setFadingOut] = useState(false);
+
+    const insuranceIcons = [
+        { Icon: Home, delay: 0.3 },
+        { Icon: Car, delay: 0.5 },
+        { Icon: Heart, delay: 0.7 }
+    ];
 
     useEffect(() => {
         const timer = setTimeout(() => {
-            setShow(false);
-            setTimeout(() => onComplete(), 800);
+            setFadingOut(true);
+            setTimeout(() => {
+                setShow(false);
+                setTimeout(() => onComplete(), 800);
+            }, 1500);
         }, 3000);
 
-        return () => clearTimeout(timer);
+        return () => {
+            clearTimeout(timer);
+        };
     }, [onComplete]);
 
     return (
@@ -19,37 +31,243 @@ export const AnimatedLoader = ({ onComplete }) => {
             {show && (
                 <motion.div
                     data-testid="animated-loader"
-                    className="fixed inset-0 z-50 animated-gradient flex flex-col items-center justify-center text-white"
-                    exit={{ opacity: 0, y: -20 }}
+                    className="fixed inset-0 z-50 bg-gradient-to-br from-blue-900 via-slate-800 to-blue-950 flex flex-col items-center justify-center text-white overflow-hidden"
+                    exit={{ opacity: 0, scale: 0.95 }}
                     transition={{ duration: 0.8, ease: 'easeInOut' }}
                 >
+                    {/* Animated background elements */}
+                    <div className="absolute inset-0">
+                        {[...Array(15)].map((_, i) => (
+                            <motion.div
+                                key={i}
+                                className="absolute w-1 h-1 bg-blue-300 rounded-full"
+                                initial={{
+                                    x: Math.random() * window.innerWidth,
+                                    y: Math.random() * window.innerHeight,
+                                    opacity: 0
+                                }}
+                                animate={{
+                                    y: [null, -Math.random() * 400],
+                                    opacity: [0, 0.6, 0],
+                                    scale: [0, 1, 0]
+                                }}
+                                transition={{
+                                    duration: Math.random() * 4 + 3,
+                                    repeat: Infinity,
+                                    delay: Math.random() * 3,
+                                    ease: 'easeOut'
+                                }}
+                            />
+                        ))}
+                    </div>
+
                     <motion.div
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.6, ease: 'easeOut' }}
-                        className="flex flex-col items-center"
+                        transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
+                        className="flex flex-col items-center relative z-10"
                     >
-                        {/* Fallback icon if logo.png doesn't exist */}
-                        <div className="w-48 h-48 mb-6 flex items-center justify-center">
-                            <Shield size={120} className="text-white" />
+                        {/* Insurance logo with person emerging effect */}
+                        <div className="w-48 h-48 mb-8 relative flex items-center justify-center">
+                            <motion.img
+                                src='./logo.png'
+                                alt="Growth Edge Insurance"
+                                className="w-56 h-56 object-contain relative z-10"
+                                animate={{
+                                    scale: fadingOut ? [1, 1.2, 0] : 1,
+                                    opacity: fadingOut ? [1, 0.8, 0] : 1,
+                                    rotate: fadingOut ? [0, 5, -5, 0] : 0
+                                }}
+                                transition={{
+                                    duration: 1.5,
+                                    ease: 'easeInOut'
+                                }}
+                            />
+
+                            {/* Person emerging from logo */}
+                            <AnimatePresence>
+                                {fadingOut && (
+                                    <motion.div
+                                        initial={{
+                                            scale: 0,
+                                            opacity: 0,
+                                            y: 50
+                                        }}
+                                        animate={{
+                                            scale: [0, 0.8, 1.1, 1],
+                                            opacity: [0, 0.5, 1],
+                                            y: [50, 0, -20, 0]
+                                        }}
+                                        exit={{
+                                            scale: 1.2,
+                                            opacity: 0,
+                                            y: -100
+                                        }}
+                                        transition={{
+                                            duration: 1.5,
+                                            ease: [0.23, 1, 0.32, 1]
+                                        }}
+                                        className="absolute inset-0 flex items-center justify-center"
+                                    >
+                                        <div className="relative">
+                                            {/* Person silhouette/illustration */}
+                                            <motion.div
+                                                className="w-32 h-40 bg-gradient-to-b from-blue-400 to-blue-600 rounded-t-full rounded-b-3xl relative"
+                                                animate={{
+                                                    boxShadow: fadingOut ? [
+                                                        '0 0 0 rgba(59, 130, 246, 0)',
+                                                        '0 0 30px rgba(59, 130, 246, 0.8)',
+                                                        '0 0 50px rgba(59, 130, 246, 0.4)'
+                                                    ] : '0 0 0 rgba(59, 130, 246, 0)'
+                                                }}
+                                                transition={{
+                                                    duration: 1.5,
+                                                    delay: 0.3
+                                                }}
+                                            >
+                                                {/* Head */}
+                                                <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-16 h-16 bg-gradient-to-br from-blue-300 to-blue-500 rounded-full" />
+                                                {/* Body */}
+                                                <div className="absolute top-16 left-1/2 transform -translate-x-1/2 w-20 h-20 bg-gradient-to-br from-blue-400 to-blue-600 rounded-2xl" />
+                                                {/* Arms gesture - welcoming */}
+                                                <motion.div
+                                                    className="absolute top-20 left-1/2 transform -translate-x-1/2 w-32 h-2 bg-blue-400 rounded-full"
+                                                    animate={{
+                                                        rotate: [-20, 20, -20]
+                                                    }}
+                                                    transition={{
+                                                        duration: 2,
+                                                        repeat: 2,
+                                                        ease: 'easeInOut'
+                                                    }}
+                                                />
+                                            </motion.div>
+
+                                            {/* Glow effect */}
+                                            <motion.div
+                                                className="absolute inset-0 bg-blue-400 rounded-full blur-xl opacity-50"
+                                                animate={{
+                                                    scale: [1, 1.5, 1],
+                                                    opacity: [0.3, 0.6, 0.3]
+                                                }}
+                                                transition={{
+                                                    duration: 1.5,
+                                                    repeat: 2
+                                                }}
+                                            />
+                                        </div>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
                         </div>
+
+                        {/* Insurance title with professional gradient */}
                         <motion.h1
-                            initial={{ opacity: 0, y: 20 }}
+                            initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.4, duration: 0.6 }}
-                            className="text-2xl md:text-3xl font-bold font-['Outfit'] tracking-tight"
+                            transition={{ delay: 0.3, duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
+                            className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white via-cyan-200 to-blue-200 bg-clip-text text-transparent mb-4 tracking-tight"
                         >
                             Growth Edge
                         </motion.h1>
-                        <motion.p
+
+                        {/* Insurance-specific subtitle */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.6, duration: 0.6, ease: 'easeOut' }}
+                            className="text-lg md:text-xl text-gray-300 font-light tracking-wide mb-6"
+                        >
+                            Your Trusted Insurance Partner
+                        </motion.div>
+
+                        {/* Insurance service icons */}
+                        <div className="flex gap-4 mb-8">
+                            {insuranceIcons.map(({ Icon, delay }, index) => (
+                                <motion.div
+                                    key={index}
+                                    initial={{ opacity: 0, scale: 0 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    transition={{ delay, duration: 0.5 }}
+                                    className="relative"
+                                >
+                                    <motion.div
+                                        animate={{
+                                            y: [0, -5, 0],
+                                        }}
+                                        transition={{
+                                            duration: 2,
+                                            repeat: Infinity,
+                                            delay: delay,
+                                            ease: 'easeInOut'
+                                        }}
+                                    >
+                                        <Icon
+                                            size={24}
+                                            className="text-blue-300 opacity-80 hover:opacity-100 transition-opacity"
+                                        />
+                                    </motion.div>
+                                </motion.div>
+                            ))}
+                        </div>
+
+                        {/* Elegant loading dots animation */}
+                        <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
-                            transition={{ delay: 0.8, duration: 0.6 }}
-                            className="text-lg md:text-xl mt-4 font-light tracking-wide"
+                            transition={{ delay: 0.8, duration: 0.4 }}
+                            className="flex gap-2 mb-8"
                         >
-                            Protecting What Matters Most
-                        </motion.p>
+                            {[...Array(3)].map((_, i) => (
+                                <motion.div
+                                    key={i}
+                                    className="w-3 h-3 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full"
+                                    animate={{
+                                        scale: [1, 1.5, 1],
+                                        opacity: [0.5, 1, 0.5]
+                                    }}
+                                    transition={{
+                                        duration: 1.5,
+                                        repeat: Infinity,
+                                        delay: i * 0.2,
+                                        ease: 'easeInOut'
+                                    }}
+                                />
+                            ))}
+                        </motion.div>
+
+                        {/* Loading status */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 1, duration: 0.4 }}
+                            className="text-sm text-gray-400 font-light"
+                        >
+                            Securing your coverage...
+                        </motion.div>
                     </motion.div>
+
+                    {/* Insurance trust indicators */}
+                    <div className="absolute bottom-8 left-8 right-8 flex justify-between text-xs text-gray-400">
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 1.2, duration: 0.4 }}
+                            className="flex items-center gap-2"
+                        >
+                            <Shield size={16} />
+                            <span>Fully Licensed</span>
+                        </motion.div>
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 1.4, duration: 0.4 }}
+                            className="flex items-center gap-2"
+                        >
+                            <Heart size={16} />
+                            <span>Trusted by Thousands</span>
+                        </motion.div>
+                    </div>
                 </motion.div>
             )}
         </AnimatePresence>

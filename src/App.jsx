@@ -1,30 +1,59 @@
-import { useState } from 'react';
-import { Navbar } from './Components/Navbar';
+// App.jsx
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
-import { ServicesSection } from './components/ServicesSection';
 import { AboutSection } from './components/AboutSection';
 import { AwardsSection } from './components/AwardsSection';
 import { TestimonialsSection } from './components/TestimonialsSection';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { AnimatedLoader } from './components/AnimatedLoader';
-import './App.css';
+import { ServicesPage } from './components/ServicesPage';
+import { ServicesSection } from './components/ServicesSection';
+// Global loader state
+let loaderShown = false;
 
 function App() {
-  const [loading, setLoading] = useState(true);
+  const [showLoader, setShowLoader] = useState(!loaderShown);
+
+  useEffect(() => {
+    if (!loaderShown) {
+      loaderShown = true;
+      // Hide loader after animation
+      const timer = setTimeout(() => {
+        setShowLoader(false);
+      }, 3000); // Adjust timing based on your loader animation
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
+  const HomePage = () => {
+    const navigate = useNavigate();
+
+    return (
+      <>
+        {showLoader && <AnimatedLoader onComplete={() => setShowLoader(false)} />}
+        <Navbar />
+        <HeroSection />
+        <ServicesSection />
+        <AboutSection />
+        <AwardsSection />
+        <TestimonialsSection />
+        <ContactSection />
+        <Footer />
+      </>
+    );
+  };
 
   return (
-    <div className="App">
-      {loading && <AnimatedLoader onComplete={() => setLoading(false)} />}
-      <Navbar />
-      <HeroSection />
-      <ServicesSection />
-      <AboutSection />
-      <AwardsSection />
-      <TestimonialsSection />
-      <ContactSection />
-      <Footer />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/services" element={<ServicesPage />} />
+      </Routes>
+    </Router>
   );
 }
 

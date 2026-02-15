@@ -1,43 +1,85 @@
 import { motion } from 'framer-motion';
-import { Shield, Home, Car, Plane, HeartPulse, Briefcase } from 'lucide-react';
+import { Shield, Home, Car, Plane, HeartPulse, Briefcase, Users, Award, TrendingUp, ShieldCheck, Clock } from 'lucide-react';
 
 export const ServicesSection = () => {
     const services = [
         {
             icon: Shield,
             title: 'Life Insurance',
-            description: 'Secure your family\'s future with comprehensive life coverage plans tailored to your needs.',
+            description: 'Comprehensive life coverage plans that protect your family\'s financial future with guaranteed benefits and tax advantages.',
             image: 'https://images.unsplash.com/photo-1528256507509-cc4facea43f6?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODl8MHwxfHNlYXJjaHwxfHxoYXBweSUyMGZhbWlseSUyMHN1bnNldCUyMHNpbGhvdWV0dGV8ZW58MHx8fHwxNzcwOTgyMzQ0fDA&ixlib=rb-4.1.0&q=85',
+            features: ['Term Life (10-40 years)', 'Whole Life (Lifetime)', 'Universal Life (Flexible)', 'Critical Illness Cover', 'Accidental Death Benefit'],
+            rating: 4.9,
+            coverage: 'Up to $5M',
+            startingFrom: '$29/month',
+            benefits: ['Tax-free payouts', 'Loan facility', 'Waiver of premium', 'Riders available'],
+            claimProcess: '24-48 hours',
+            documents: ['Age proof', 'Income proof', 'Medical reports'],
         },
         {
             icon: HeartPulse,
             title: 'Health Insurance',
-            description: 'Comprehensive medical coverage for you and your loved ones with nationwide network.',
+            description: 'Complete medical coverage with nationwide network of 10,000+ hospitals and cashless claim facilities for your peace of mind.',
             image: 'https://images.unsplash.com/photo-1766405533321-03aab76df3cc?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NzV8MHwxfHNlYXJjaHw0fHxoZWFsdGh5JTIwbGlmZXN0eWxlJTIwcnVubmluZyUyMG91dGRvb3IlMjBzdW5yaXNlfGVufDB8fHx8MTc3MDk4MjM1OHww&ixlib=rb-4.1.0&q=85',
+            features: ['Individual Plans', 'Family Floater', 'Senior Citizen', 'Critical Illness', 'Maternity Cover'],
+            rating: 4.8,
+            coverage: 'Up to $10M',
+            startingFrom: '$45/month',
+            benefits: ['Cashless hospitalization', 'No claim bonus', 'Free health checkup', 'Ambulance cover'],
+            claimProcess: '2-4 hours',
+            documents: ['ID proof', 'Address proof', 'Medical history'],
         },
         {
             icon: Car,
             title: 'Vehicle Insurance',
-            description: 'Protect your vehicles with our comprehensive auto insurance policies and roadside assistance.',
+            description: 'Complete vehicle protection with 24/7 roadside assistance, quick claim settlement, and coverage for all types of vehicles.',
             image: 'https://images.unsplash.com/photo-1768929571987-8b0d52ba8836?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzB8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBjYXIlMjBpbnRlcmlvciUyMGxlYXRoZXIlMjBkZXRhaWx8ZW58MHx8fHwxNzcwOTgyMzYwfDA&ixlib=rb-4.1.0&q=85',
+            features: ['Comprehensive Cover', 'Third Party Liability', 'Own Damage', 'Personal Accident', 'Zero Depreciation'],
+            rating: 4.7,
+            coverage: 'Full Coverage',
+            startingFrom: '$35/month',
+            benefits: ['24/7 roadside assistance', 'No claim bonus', 'Engine protection', 'Consumable cover'],
+            claimProcess: 'Same day',
+            documents: ['RC book', 'Driving license', 'Insurance papers'],
         },
         {
             icon: Home,
             title: 'Home Insurance',
-            description: 'Safeguard your property and belongings against natural disasters and unforeseen events.',
+            description: 'Protect your home and belongings against natural disasters, theft, fire, and unforeseen events with comprehensive coverage.',
             image: 'https://images.unsplash.com/photo-1706808849802-8f876ade0d1f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzR8MHwxfHNlYXJjaHw0fHxtb2Rlcm4lMjBsdXh1cnklMjBob3VzZSUyMGV4dGVyaW9yJTIwYXJjaGl0ZWN0dXJlfGVufDB8fHx8MTc3MDk4MjM0NXww&ixlib=rb-4.1.0&q=85',
+            features: ['Building Coverage', 'Contents Insurance', 'Natural Disasters', 'Theft & Burglary', 'Fire & Lightning'],
+            rating: 4.8,
+            coverage: 'Up to $2M',
+            startingFrom: '$25/month',
+            benefits: ['Temporary accommodation', 'Valuables cover', 'Liability protection', 'Legal expenses'],
+            claimProcess: '3-5 days',
+            documents: ['Property papers', 'ID proof', 'Valuation report'],
         },
         {
             icon: Plane,
             title: 'Travel Insurance',
-            description: 'Travel worry-free with coverage for medical emergencies, trip cancellations, and lost luggage.',
+            description: 'International travel coverage with medical emergencies, trip cancellations, lost baggage, and emergency evacuation services.',
             image: 'https://images.unsplash.com/photo-1678485652523-cabdeb24a6a3?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzd8MHwxfHNlYXJjaHwxfHxhaXJwbGFuZSUyMHdpbmRvdyUyMHZpZXclMjBzdW5zZXR8ZW58MHx8fHwxNzcwOTgyMzYxfDA&ixlib=rb-4.1.0&q=85',
+            features: ['Trip Cancellation', 'Medical Emergency', 'Lost Luggage', 'Flight Delay', 'Emergency Evacuation'],
+            rating: 4.6,
+            coverage: 'Worldwide',
+            startingFrom: '$15/day',
+            benefits: ['24/7 global assistance', 'Cashless treatment', 'Passport loss cover', 'Adventure sports'],
+            claimProcess: 'Instant',
+            documents: ['Passport', 'Visa', 'Travel tickets'],
         },
         {
             icon: Briefcase,
             title: 'Business Insurance',
-            description: 'Comprehensive protection for your business assets, liability, and employee welfare programs.',
+            description: 'Comprehensive business protection covering liability, property, employees, professional indemnity, and business interruption.',
             image: 'https://images.unsplash.com/photo-1761735486549-7a6a04e67061?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzl8MHwxfHNlYXJjaHwxfHxjb3Jwb3JhdGUlMjBidXNpbmVzcyUyMG1lZXRpbmclMjBnbGFzcyUyMG9mZmljZXxlbnwwfHx8fDE3NzA5ODIzNDV8MA&ixlib=rb-4.1.0&q=85',
+            features: ['Liability Coverage', 'Property Insurance', 'Employee Benefits', 'Professional Indemnity', 'Business Interruption'],
+            rating: 4.9,
+            coverage: 'Custom Plans',
+            startingFrom: '$99/month',
+            benefits: ['Legal protection', 'Employee welfare', 'Asset protection', 'Income loss cover'],
+            claimProcess: '5-7 days',
+            documents: ['Business registration', 'Financial statements', 'Employee details'],
         },
     ];
 
@@ -46,100 +88,201 @@ export const ServicesSection = () => {
         visible: {
             opacity: 1,
             transition: {
-                staggerChildren: 0.1,
+                staggerChildren: 0.15,
+                duration: 0.8,
+                ease: [0.23, 1, 0.32, 1]
             },
         },
     };
 
     const itemVariants = {
-        hidden: { opacity: 0, y: 20 },
+        hidden: { opacity: 0, y: 40, scale: 0.95 },
         visible: {
             opacity: 1,
             y: 0,
+            scale: 1,
             transition: {
-                duration: 0.6,
+                duration: 0.8,
+                ease: [0.23, 1, 0.32, 1]
             },
         },
     };
 
+    const floatingVariants = {
+        initial: { y: 0 },
+        animate: {
+            y: [-10, 10, -10],
+            transition: {
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut"
+            }
+        }
+    };
+
+    const agentInfo = {
+        name: "Sarthak Shukla",
+        title: "Senior Insurance Agent",
+        license: "LIC-A-12345-67890",
+        experience: "5+ Years",
+        phone: "1-800-555-0199",
+        email: "sarah.mitchell@insurepro.com",
+        photo: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3MjQ3OTB8MHwxfHNlYXJjaHwxfHxmZW1hbGUlMjBidXNpbmVzcyUyMHByb2Zlc3Npb25hbCUyMGhlYWRzaG90JTIwc21pbGluZ3xlbnwwfHx8fDE3NzA5ODU2NDB8MA&ixlib=rb-4.1.0&q=85"
+    };
+
     return (
-        <section id="services" className="py-20 md:py-32 bg-slate-50" data-testid="services-section">
-            <div className="container mx-auto px-4 md:px-8 max-w-7xl">
-                {/* Section Header */}
+        <section id="services" className="py-12 md:py-15 bg-white relative overflow-hidden" data-testid="services-section">
+            {/* Enhanced Background decorative elements */}
+            <motion.div
+                variants={floatingVariants}
+                initial="initial"
+                animate="animate"
+                className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-blue-200 to-cyan-200 rounded-full blur-3xl opacity-30"
+            />
+            <motion.div
+                variants={floatingVariants}
+                initial="initial"
+                animate="animate"
+                transition={{ delay: 1 }}
+                className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-br from-purple-200 to-pink-200 rounded-full blur-3xl opacity-30"
+            />
+
+            {/* Animated particles */}
+            <div className="absolute inset-0 overflow-hidden">
+                {[...Array(8)].map((_, i) => (
+                    <motion.div
+                        key={i}
+                        className="absolute w-2 h-2 bg-blue-400 rounded-full opacity-20"
+                        initial={{
+                            x: Math.random() * window.innerWidth,
+                            y: Math.random() * window.innerHeight,
+                            scale: 0
+                        }}
+                        animate={{
+                            y: [null, -Math.random() * 200 - 100],
+                            opacity: [0, 0.6, 0],
+                            scale: [0, 1, 0]
+                        }}
+                        transition={{
+                            duration: Math.random() * 3 + 4,
+                            repeat: Infinity,
+                            delay: Math.random() * 2,
+                            ease: "easeOut"
+                        }}
+                    />
+                ))}
+            </div>
+            <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-indigo-50 rounded-full blur-3xl opacity-30" />
+
+            <div className="container mx-auto px-4 md:px-8 max-w-7xl relative z-10">
+                {/* Section Header - More Professional */}
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                    className="text-center mb-16"
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
+                    className="text-center mb-20"
                 >
-                    <p className="text-sm font-medium tracking-widest uppercase text-[#E63946] mb-4">Our Services</p>
-                    <h2 className="text-3xl md:text-5xl font-semibold font-['Outfit'] tracking-tight text-[#0B1F3A] mb-4">
-                        Comprehensive Insurance Solutions
-                    </h2>
-                    <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-                        Choose from our wide range of insurance products designed to protect what matters most to you.
-                    </p>
-                </motion.div>
+                    {/* Agent Profile Badge */}
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
+                        className="flex items-center justify-center gap-4 mb-8"
+                    >
+                        <div className="flex items-center gap-3 px-6 py-2 bg-white border border-slate-200 rounded-full shadow-sm">
+                            <div className="w-8 h-8 rounded-full overflow-hidden border-2 border-[#E63946]">
+                                <img src={agentInfo.photo} alt={agentInfo.name} className="w-full h-full object-cover" />
+                            </div>
+                            <div className="text-left">
+                                <p className="text-xs text-slate-500">Your Agent</p>
+                                <p className="text-sm font-bold text-slate-800">{agentInfo.name}</p>
+                            </div>
+                            <div className="h-4 w-px bg-slate-300 mx-2" />
+                            <ShieldCheck className="w-5 h-5 text-[#E63946]" />
+                            <span className="text-xs font-semibold text-slate-700">Licensed</span>
+                        </div>
+                    </motion.div>
 
-                {/* Services Grid */}
-                <motion.div
-                    variants={containerVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-                >
-                    {services.map((service, index) => {
-                        const Icon = service.icon;
-                        return (
-                            <motion.div
-                                key={service.title}
-                                variants={itemVariants}
-                                className="service-card group relative overflow-hidden rounded-2xl bg-white p-8 border border-slate-100 shadow-sm hover:shadow-xl"
-                                data-testid={`service-card-${service.title.toLowerCase().replace(' ', '-')}`}
-                            >
-                                {/* Background image overlay on hover */}
-                                <div
-                                    className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500"
-                                    style={{
-                                        backgroundImage: `url('${service.image}')`,
-                                        backgroundSize: 'cover',
-                                        backgroundPosition: 'center',
-                                    }}
-                                />
+                    <motion.h2
+                        className="text-4xl md:text-6xl font-bold font-['Outfit'] tracking-tight text-[#0B1F3A] mb-6"
+                        initial={{ opacity: 0, y: 30, scale: 0.9 }}
+                        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                        viewport={{ once: true, margin: "-50px" }}
+                        transition={{ duration: 1, delay: 0.3, ease: [0.23, 1, 0.32, 1] }}
+                    >
+                        <motion.span
+                            className="bg-gradient-to-r from-[#0B1F3A] via-blue-800 to-[#0B1F3A] bg-clip-text text-transparent block"
+                            whileHover={{ scale: 1.02 }}
+                            transition={{ duration: 0.3 }}
+                        >
+                            Complete Protection
+                        </motion.span>
+                        <br />
+                        <motion.span
+                            className="bg-gradient-to-r from-[#E63946] to-red-600 bg-clip-text text-transparent block"
+                            whileHover={{ scale: 1.02 }}
+                            transition={{ duration: 0.3 }}
+                        >
+                            for Your Future
+                        </motion.span>
+                    </motion.h2>
 
-                                <div className="relative z-10">
-                                    {/* Icon */}
-                                    <div className="mb-6 inline-block p-4 bg-[#0B1F3A] rounded-2xl group-hover:bg-[#E63946] transition-colors duration-300">
-                                        <Icon size={32} className="text-white" />
-                                    </div>
+                    <motion.p
+                        className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed mb-8"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: 0.4 }}
+                    >
+                        As an independent insurance agent, I work with top-rated carriers to find you the best coverage at the most competitive rates.
+                    </motion.p>
 
-                                    {/* Content */}
-                                    <h3 className="text-2xl font-semibold text-[#0B1F3A] mb-3 font-['Outfit']">
-                                        {service.title}
-                                    </h3>
-                                    <p className="text-slate-600 leading-relaxed mb-4">
-                                        {service.description}
-                                    </p>
+                    {/* Trust indicators - More Agent-focused */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: 0.5 }}
+                        className="flex flex-wrap justify-center gap-6 mb-8"
+                    >
+                        <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow-sm border border-slate-100">
+                            <Award className="w-5 h-5 text-[#E63946]" />
+                            <span className="text-sm font-semibold text-slate-700">Licensed Agent</span>
+                        </div>
+                        <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow-sm border border-slate-100">
+                            <Users className="w-5 h-5 text-[#E63946]" />
+                            <span className="text-sm font-semibold text-slate-700">1,200+ Clients</span>
+                        </div>
+                        <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow-sm border border-slate-100">
+                            <TrendingUp className="w-5 h-5 text-[#E63946]" />
+                            <span className="text-sm font-semibold text-slate-700">98% Retention</span>
+                        </div>
+                        <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow-sm border border-slate-100">
+                            <Clock className="w-5 h-5 text-[#E63946]" />
+                            <span className="text-sm font-semibold text-slate-700">24/7 Support</span>
+                        </div>
+                    </motion.div>
 
-                                    {/* Learn More Link */}
-                                    <div className="flex items-center gap-2 text-[#E63946] font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                        <span>Learn More</span>
-                                        <motion.span
-                                            animate={{ x: [0, 5, 0] }}
-                                            transition={{ repeat: Infinity, duration: 1.5 }}
-                                        >
-                                            →
-                                        </motion.span>
-                                    </div>
-                                </div>
-
-                                {/* Red accent line on hover */}
-                                <div className="absolute bottom-0 left-0 right-0 h-1 bg-[#E63946] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-                            </motion.div>
-                        );
-                    })}
+                    {/* Agent Contact Bar */}
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true, margin: "-50px" }}
+                        transition={{ duration: 0.8, delay: 0.2, ease: [0.23, 1, 0.32, 1] }}
+                        className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-red-50 via-pink-50 to-red-50 border border-red-200 rounded-full mb-8 shadow-lg hover:shadow-xl transition-all duration-500"
+                        whileHover={{ scale: 1.05, y: -2 }}
+                    >
+                        <div className="inline-flex items-center justify-center w-6 h-6">
+                            <Shield className="w-6 h-6 text-[#E63946]" />
+                        </div>
+                        <p className="text-sm font-bold tracking-widest uppercase text-[#E63946]">Licensed Insurance Agency</p>
+                        <div className="inline-flex items-center justify-center w-6 h-6">
+                            <Shield className="w-6 h-6 text-[#E63946]" />
+                        </div>
+                        <span className="text-sm">Free Consultation</span>
+                    </motion.div>
                 </motion.div>
             </div>
         </section>

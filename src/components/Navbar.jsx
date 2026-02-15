@@ -1,84 +1,162 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 export const Navbar = () => {
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [logoVisible, setLogoVisible] = useState(true);
+    const [isLoaded, setIsLoaded] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const handleScroll = () => {
-            setScrolled(window.scrollY > 50);
+            const scrollY = window.scrollY;
+            setScrolled(scrollY > 50);
+            setLogoVisible(scrollY <= 100);
         };
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    useEffect(() => {
+        let observer = null;
+
+        const handleLoaderComplete = () => {
+            setTimeout(() => {
+                setIsLoaded(true);
+            }, 0);
+        };
+
+        const loaderElement = document.querySelector('[data-testid="animated-loader"]');
+
+        if (!loaderElement) {
+            handleLoaderComplete();
+        } else {
+            observer = new MutationObserver((mutations) => {
+                mutations.forEach((mutation) => {
+                    if (
+                        mutation.type === 'childList' &&
+                        !document.querySelector('[data-testid="animated-loader"]')
+                    ) {
+                        handleLoaderComplete();
+                        observer.disconnect();
+                    }
+                });
+            });
+
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true,
+            });
+        }
+
+        return () => {
+            if (observer) observer.disconnect();
+        };
+    }, []);
+
     const menuItems = [
         { label: 'Home', href: '#home' },
-        { label: 'Services', href: '#services' },
+        { label: 'Services', href: '/services' },
         { label: 'Awards', href: '#awards' },
         { label: 'Testimonials', href: '#testimonials' },
         { label: 'About', href: '#about' },
         { label: 'Contact', href: '#contact' },
     ];
 
-    const scrollToSection = (e, href) => {
-        e.preventDefault();
-        const element = document.querySelector(href);
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
+    const handleNavigation = (e, href) => {
+        if (href === '/services') {
+            // Navigate to services page using React Router
+            navigate('/services');
             setMobileMenuOpen(false);
+        } else if (href === '#home') {
+            // Navigate to home page
+            navigate('/');
+            setMobileMenuOpen(false);
+        } else {
+            // Handle smooth scrolling for anchor links (only works on home page)
+            e.preventDefault();
+            const element = document.querySelector(href);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+                setMobileMenuOpen(false);
+            } else {
+                // If element doesn't exist (on services page), navigate to home
+                navigate('/');
+                setMobileMenuOpen(false);
+            }
         }
     };
 
     return (
         <>
             <motion.nav
-                className={`fixed top-0 w-full z-40 transition-all duration-300 ${scrolled ? 'bg-white/90 backdrop-blur-md border-b border-slate-200/50 shadow-sm' : 'bg-transparent'
+                className={`fixed top-0 w-full z-40 transition-all duration-500 ${scrolled ? 'bg-white/95 backdrop-blur-lg border-b border-slate-200/60 shadow-lg' : 'bg-transparent'
                     }`}
                 initial={{ y: -100 }}
-                animate={{ y: 0 }}
-                transition={{ duration: 0.5 }}
+                animate={{ y: isLoaded ? 0 : -100 }}
+                transition={{ duration: 0.6, ease: 'easeOut' }}
             >
-                <div className="container mx-auto px-4 max-w-7xl">
-                    <div className="flex items-center justify-between h-16">
-                        <a href="#home" onClick={(e) => scrollToSection(e, '#home')} className="flex items-center space-x-2">
-                            <img src="/logo.png" alt="Growth Edge" className="h-8 w-8 object-contain" />
-                            <span className={`text-xl font-bold font-['Outfit'] tracking-tighter ${scrolled ? 'text-[#0B1F3A]' : 'text-white'
-                                }`}>
+                <div className="container mx-auto px-6 max-w-7xl">
+                    <div className="flex items-center justify-between h-20">
+                        <motion.a
+                            href="#home"
+                            onClick={(e) => handleNavigation(e, '#home')}
+                            className="flex items-center space-x-3 group"
+                            whileHover={{ scale: 1.05 }}
+                            transition={{ duration: 0.2 }}
+                        >
+                            <motion.div
+                                initial={{ opacity: 1, scale: 1 }}
+                                animate={{ opacity: logoVisible ? 1 : 0, scale: logoVisible ? 1 : 0.8 }}
+                                transition={{ duration: 0.3, ease: 'easeInOut' }}
+                                className="overflow-hidden"
+                            >
+                                <img src="/logo.png" alt="Growth Edge" className="h-25 w-25 object-contain" />
+                            </motion.div>
+                            <motion.span
+                                className={`text-2xl font-bold font-['Outfit'] tracking-tight transition-all duration-300 ${scrolled ? 'text-[#0B1F3A]' : 'text-white'
+                                    }`}
+                                whileHover={{ letterSpacing: '0.05em' }}
+                            >
                                 Growth Edge
-                            </span>
-                        </a>
+                            </motion.span>
+                        </motion.a>
 
-                        <div className="hidden lg:flex items-center space-x-6">
-                            {menuItems.map((item) => (
-                                <a
+                        <div className="hidden lg:flex items-center space-x-8">
+                            {menuItems.map((item, index) => (
+                                <motion.a
                                     key={item.label}
                                     href={item.href}
-                                    onClick={(e) => scrollToSection(e, item.href)}
-                                    className={`text-sm transition-colors hover:text-[#E63946] ${scrolled ? 'text-slate-700' : 'text-white'
+                                    onClick={(e) => handleNavigation(e, item.href)}
+                                    className={`relative text-sm font-medium transition-all duration-300 hover:text-[#E63946] group ${scrolled ? 'text-slate-700' : 'text-white'
                                         }`}
+                                    initial={{ opacity: 0, y: -20 }}
+                                    animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : -20 }}
+                                    transition={{ duration: 0.3, delay: isLoaded ? index * 0.1 : 0 }}
+                                    whileHover={{ y: -2 }}
                                 >
                                     {item.label}
-                                </a>
+                                    <motion.span
+                                        className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#E63946] transition-all duration-300 group-hover:w-full"
+                                        initial={{ width: 0 }}
+                                        whileHover={{ width: '100%' }}
+                                    />
+                                </motion.a>
                             ))}
-                            <a
-                                href="#contact"
-                                onClick={(e) => scrollToSection(e, '#contact')}
-                                className="px-4 py-2 bg-[#E63946] hover:bg-[#D62839] text-white rounded-full text-sm transition-all"
-                            >
-                                Get Quote
-                            </a>
                         </div>
 
-                        <button
+                        <motion.button
                             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                            className={`lg:hidden p-2 rounded-lg ${scrolled ? 'text-[#0B1F3A]' : 'text-white'
+                            className={`lg:hidden p-3 rounded-xl transition-all duration-300 ${scrolled ? 'text-[#0B1F3A] hover:bg-slate-100' : 'text-white hover:bg-white/10'
                                 }`}
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.95 }}
                         >
-                            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
-                        </button>
+                            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                        </motion.button>
                     </div>
                 </div>
             </motion.nav>
@@ -88,34 +166,44 @@ export const Navbar = () => {
                     initial={{ opacity: 0, x: '100%' }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: '100%' }}
-                    className="fixed inset-y-0 right-0 z-50 w-64 bg-white shadow-xl lg:hidden"
+                    transition={{ duration: 0.3, ease: 'easeInOut' }}
+                    className="fixed inset-y-0 right-0 z-50 w-72 bg-white/95 backdrop-blur-lg shadow-2xl lg:hidden"
                 >
                     <div className="flex flex-col h-full">
-                        <div className="flex items-center justify-between p-4 border-b">
-                            <span className="text-lg font-bold text-[#0B1F3A]">Menu</span>
-                            <button onClick={() => setMobileMenuOpen(false)} className="p-1">
+                        <div className="flex items-center justify-between p-6 border-b border-slate-200">
+                            <motion.span
+                                className="text-xl font-bold text-[#0B1F3A]"
+                                initial={{ opacity: 0, x: 20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ duration: 0.3, delay: 0.1 }}
+                            >
+                                Menu
+                            </motion.span>
+                            <motion.button
+                                onClick={() => setMobileMenuOpen(false)}
+                                className="p-2 rounded-lg hover:bg-slate-100 transition-colors"
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.95 }}
+                            >
                                 <X size={20} className="text-[#0B1F3A]" />
-                            </button>
+                            </motion.button>
                         </div>
-                        <div className="flex-1 p-4">
-                            <div className="flex flex-col space-y-3">
-                                {menuItems.map((item) => (
-                                    <a
+                        <div className="flex-1 p-6">
+                            <div className="flex flex-col space-y-4">
+                                {menuItems.map((item, index) => (
+                                    <motion.a
                                         key={item.label}
                                         href={item.href}
-                                        onClick={(e) => scrollToSection(e, item.href)}
-                                        className="text-base text-slate-700 hover:text-[#E63946] py-1"
+                                        onClick={(e) => handleNavigation(e, item.href)}
+                                        className="text-lg font-medium text-slate-700 hover:text-[#E63946] py-2 px-3 rounded-lg hover:bg-slate-50 transition-all duration-300"
+                                        initial={{ opacity: 0, x: 50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ duration: 0.3, delay: index * 0.1 + 0.2 }}
+                                        whileHover={{ x: 5 }}
                                     >
                                         {item.label}
-                                    </a>
+                                    </motion.a>
                                 ))}
-                                <a
-                                    href="#contact"
-                                    onClick={(e) => scrollToSection(e, '#contact')}
-                                    className="mt-3 px-4 py-2 bg-[#E63946] text-white rounded-full text-center text-sm"
-                                >
-                                    Get Quote
-                                </a>
                             </div>
                         </div>
                     </div>
