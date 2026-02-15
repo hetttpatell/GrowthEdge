@@ -63,28 +63,28 @@ export const AwardsSection = () => {
     };
 
     return (
-        <section id="awards" className="relative py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 overflow-hidden">
+        <section id="awards" className="relative py-16 md:py-20 bg-gradient-to-br from-white via-blue-50/30 to-cyan-50/30 overflow-hidden">
             {/* Modern background effects */}
             <div className="absolute inset-0">
                 <motion.div
                     variants={floatingVariants}
                     initial="initial"
                     animate="animate"
-                    className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-blue-200/30 to-cyan-200/30 rounded-full blur-3xl"
+                    className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-blue-100/20 to-cyan-100/20 rounded-full blur-3xl"
                 />
                 <motion.div
                     variants={floatingVariants}
                     initial="initial"
                     animate="animate"
                     transition={{ delay: 1 }}
-                    className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-br from-purple-200/30 to-pink-200/30 rounded-full blur-3xl"
+                    className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-br from-[#E63946]/10 to-red-100/20 rounded-full blur-3xl"
                 />
 
                 {/* Animated particles */}
                 {[...Array(15)].map((_, i) => (
                     <motion.div
                         key={i}
-                        className="absolute w-1 h-1 bg-gradient-to-r from-blue-400/40 to-cyan-400/40 rounded-full"
+                        className="absolute w-1 h-1 bg-gradient-to-r from-blue-400/30 to-cyan-400/30 rounded-full"
                         initial={{
                             x: Math.random() * window.innerWidth,
                             y: window.innerHeight + 50,
@@ -119,19 +119,19 @@ export const AwardsSection = () => {
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
-                        className="inline-flex items-center gap-2 px-6 py-2 bg-gradient-to-r from-red-50 to-pink-50 border border-red-200 rounded-full mb-4 shadow-md backdrop-blur-sm"
+                        className="inline-flex items-center gap-2 px-6 py-2 bg-gradient-to-r from-[#E63946]/10 to-red-50 border border-[#E63946]/20 rounded-full mb-4 shadow-sm backdrop-blur-sm"
                         whileHover={{ scale: 1.05, y: -2 }}
                     >
                         <motion.div
                             animate={{ rotate: 360 }}
                             transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                            className="w-2 h-2 bg-gradient-to-r from-[#E63946] to-red-500 rounded-full"
+                            className="w-2 h-2 bg-gradient-to-r from-[#E63946] to-orange-500 rounded-full"
                         />
-                        <p className="text-sm font-black tracking-widest uppercase text-[#E63946]">Recognition</p>
+                        <p className="text-sm font-black tracking-widest uppercase text-[#0B1F3A]">Recognition</p>
                         <motion.div
                             animate={{ rotate: 360 }}
                             transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                            className="w-2 h-2 bg-gradient-to-r from-[#E63946] to-red-500 rounded-full"
+                            className="w-2 h-2 bg-gradient-to-r from-[#E63946] to-orange-500 rounded-full"
                         />
                     </motion.div>
 
@@ -147,7 +147,7 @@ export const AwardsSection = () => {
                             whileHover={{ scale: 1.05 }}
                             transition={{ duration: 0.2 }}
                         >
-                            Awards & <span className="text-[#E63946]">Achievements</span>
+                            Awards & <span className="text-[#E63946]">Recognition</span>
                         </motion.span>
                     </motion.h2>
 
@@ -156,7 +156,7 @@ export const AwardsSection = () => {
                         whileInView={{ width: "5rem" }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8, delay: 0.4 }}
-                        className="h-1 bg-gradient-to-r from-[#E63946] to-red-500 mx-auto rounded-full"
+                        className="h-1 bg-gradient-to-r from-[#E63946] to-orange-500 mx-auto rounded-full"
                     />
                 </motion.div>
 
@@ -188,10 +188,10 @@ export const AwardsSection = () => {
                                     variants={glowVariants}
                                     initial="initial"
                                     animate="animate"
-                                    className="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-cyan-400/20 rounded-3xl blur-xl"
+                                    className="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-cyan-400/10 rounded-3xl blur-xl"
                                 />
 
-                                <div className="relative bg-white/90 backdrop-blur-md rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 border border-white/50 h-full">
+                                <div className="relative bg-white/80 backdrop-blur-md rounded-3xl p-8 shadow-lg hover:shadow-xl transition-all duration-500 border border-white/60 h-full">
                                     {/* Floating icon */}
                                     <motion.div
                                         variants={floatingVariants}
@@ -203,7 +203,7 @@ export const AwardsSection = () => {
                                         <motion.div
                                             whileHover={{ rotate: 360, scale: 1.1 }}
                                             transition={{ duration: 0.6 }}
-                                            className="p-4 bg-gradient-to-br from-[#0B1F3A] to-blue-600 rounded-2xl shadow-lg group-hover:shadow-xl transition-all duration-300"
+                                            className="p-4 bg-gradient-to-br from-[#0B1F3A] to-blue-700 rounded-2xl shadow-md group-hover:shadow-lg transition-all duration-300"
                                         >
                                             <Icon size={28} className="text-white" />
                                         </motion.div>
@@ -211,20 +211,20 @@ export const AwardsSection = () => {
 
                                     <div className="text-center">
                                         <motion.h3
-                                            className="text-xl font-bold text-[#0B1F3A] mb-3 font-['Outfit'] group-hover:text-blue-700 transition-colors duration-300"
+                                            className="text-xl font-bold text-[#0B1F3A] mb-3 font-['Outfit'] group-hover:text-blue-800 transition-colors duration-300"
                                             whileHover={{ scale: 1.05 }}
                                         >
                                             {award.title}
                                         </motion.h3>
 
-                                        <p className="text-sm text-slate-600 mb-4 font-medium">{award.organization}</p>
+                                        <p className="text-sm text-slate-500 mb-4 font-medium">{award.organization}</p>
 
                                         <motion.div
                                             whileHover={{ scale: 1.1 }}
                                             whileTap={{ scale: 0.95 }}
                                             transition={{ duration: 0.2 }}
                                         >
-                                            <span className="inline-block px-4 py-2 bg-gradient-to-r from-[#E63946] to-red-500 text-white text-sm font-bold rounded-full shadow-md hover:shadow-lg transition-shadow duration-300">
+                                            <span className="inline-block px-4 py-2 bg-gradient-to-r from-[#E63946] to-orange-500 text-white text-sm font-bold rounded-full shadow-sm hover:shadow-md transition-shadow duration-300">
                                                 {award.year}
                                             </span>
                                         </motion.div>
@@ -237,7 +237,7 @@ export const AwardsSection = () => {
                                         whileHover={{ rotate: 360 }}
                                         transition={{ duration: 0.6 }}
                                     >
-                                        <Sparkles size={16} className="text-[#E63946]" />
+                                        <Sparkles size={16} className="text-[#0B1F3A]" />
                                     </motion.div>
                                 </div>
                             </motion.div>

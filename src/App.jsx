@@ -12,15 +12,21 @@ import { Footer } from './components/Footer';
 import { AnimatedLoader } from './components/AnimatedLoader';
 import { ServicesPage } from './components/ServicesPage';
 import { ServicesSection } from './components/ServicesSection';
-// Global loader state
-let loaderShown = false;
+import { AwardsPage } from './components/AwardsPage';
+import { ContactPage } from './components/ContactPage';
 
 function App() {
-  const [showLoader, setShowLoader] = useState(!loaderShown);
+  const [showLoader, setShowLoader] = useState(false);
 
   useEffect(() => {
-    if (!loaderShown) {
-      loaderShown = true;
+    // Check if loader has already been shown in this session
+    const loaderAlreadyShown = sessionStorage.getItem('loaderShown');
+
+    if (!loaderAlreadyShown) {
+      // Show loader for first-time visitors
+      setShowLoader(true);
+      sessionStorage.setItem('loaderShown', 'true');
+
       // Hide loader after animation
       const timer = setTimeout(() => {
         setShowLoader(false);
@@ -39,9 +45,9 @@ function App() {
         <HeroSection />
         <ServicesSection />
         <AboutSection />
-        <AwardsSection />
+        {/* <AwardsSection /> */}
         <TestimonialsSection />
-        <ContactSection />
+        {/* <ContactSection /> */}
         <Footer />
       </>
     );
@@ -52,6 +58,8 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/services" element={<ServicesPage />} />
+        <Route path="/awards" element={<AwardsPage />} />
+        <Route path="/contact" element={<ContactPage />} />
       </Routes>
     </Router>
   );

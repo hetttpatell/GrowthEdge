@@ -3,8 +3,17 @@ import { Shield, Home, Car, Plane, HeartPulse, Briefcase, ArrowRight } from 'luc
 import { useNavigate } from 'react-router-dom';
 import { Navbar } from './Navbar';
 import { Footer } from './Footer';
+import { useEffect } from 'react';
 
 export const ServicesPage = () => {
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        // Trigger navbar loaded state by dispatching custom event
+        const event = new CustomEvent('pageLoaded', { detail: { page: 'services' } });
+        window.dispatchEvent(event);
+    }, []);
+
     const services = [
         {
             icon: Shield,

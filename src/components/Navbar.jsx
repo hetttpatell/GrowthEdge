@@ -8,6 +8,7 @@ export const Navbar = () => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [logoVisible, setLogoVisible] = useState(true);
     const [isLoaded, setIsLoaded] = useState(false);
+    const [isHomePage, setIsHomePage] = useState(true);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -28,6 +29,18 @@ export const Navbar = () => {
                 setIsLoaded(true);
             }, 0);
         };
+
+        const handlePageLoad = (event) => {
+            setTimeout(() => {
+                setIsLoaded(true);
+                // Check if we're on home page
+                const currentPage = event.detail?.page || 'unknown';
+                setIsHomePage(currentPage === 'home' || window.location.pathname === '/');
+            }, 0);
+        };
+
+        // Check current page on mount
+        setIsHomePage(window.location.pathname === '/');
 
         const loaderElement = document.querySelector('[data-testid="animated-loader"]');
 
@@ -52,24 +65,34 @@ export const Navbar = () => {
             });
         }
 
+        window.addEventListener('pageLoaded', handlePageLoad);
+
         return () => {
             if (observer) observer.disconnect();
+            window.removeEventListener('pageLoaded', handlePageLoad);
         };
     }, []);
 
     const menuItems = [
         { label: 'Home', href: '#home' },
         { label: 'Services', href: '/services' },
-        { label: 'Awards', href: '#awards' },
-        { label: 'Testimonials', href: '#testimonials' },
+        { label: 'Awards', href: '/awards' },
         { label: 'About', href: '#about' },
-        { label: 'Contact', href: '#contact' },
+        { label: 'Contact', href: '/contact' },
     ];
 
     const handleNavigation = (e, href) => {
         if (href === '/services') {
             // Navigate to services page using React Router
             navigate('/services');
+            setMobileMenuOpen(false);
+        } else if (href === '/awards') {
+            // Navigate to awards page using React Router
+            navigate('/awards');
+            setMobileMenuOpen(false);
+        } else if (href === '/contact') {
+            // Navigate to contact page using React Router
+            navigate('/contact');
             setMobileMenuOpen(false);
         } else if (href === '#home') {
             // Navigate to home page
@@ -93,7 +116,9 @@ export const Navbar = () => {
     return (
         <>
             <motion.nav
-                className={`fixed top-0 w-full z-40 transition-all duration-500 ${scrolled ? 'bg-white/95 backdrop-blur-lg border-b border-slate-200/60 shadow-lg' : 'bg-transparent'
+                className={`fixed top-0 w-full z-40 transition-all duration-500 ${scrolled || !isHomePage
+                    ? 'bg-white/95 backdrop-blur-lg border-b border-slate-200/60 shadow-lg'
+                    : 'bg-transparent'
                     }`}
                 initial={{ y: -100 }}
                 animate={{ y: isLoaded ? 0 : -100 }}
@@ -117,7 +142,7 @@ export const Navbar = () => {
                                 <img src="/logo.png" alt="Growth Edge" className="h-25 w-25 object-contain" />
                             </motion.div>
                             <motion.span
-                                className={`text-2xl font-bold font-['Outfit'] tracking-tight transition-all duration-300 ${scrolled ? 'text-[#0B1F3A]' : 'text-white'
+                                className={`text-2xl font-bold font-['Outfit'] tracking-tight transition-all duration-300 ${scrolled || !isHomePage ? 'text-[#0B1F3A]' : 'text-white'
                                     }`}
                                 whileHover={{ letterSpacing: '0.05em' }}
                             >
@@ -126,31 +151,38 @@ export const Navbar = () => {
                         </motion.a>
 
                         <div className="hidden lg:flex items-center space-x-8">
-                            {menuItems.map((item, index) => (
-                                <motion.a
-                                    key={item.label}
-                                    href={item.href}
-                                    onClick={(e) => handleNavigation(e, item.href)}
-                                    className={`relative text-sm font-medium transition-all duration-300 hover:text-[#E63946] group ${scrolled ? 'text-slate-700' : 'text-white'
-                                        }`}
-                                    initial={{ opacity: 0, y: -20 }}
-                                    animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : -20 }}
-                                    transition={{ duration: 0.3, delay: isLoaded ? index * 0.1 : 0 }}
-                                    whileHover={{ y: -2 }}
-                                >
-                                    {item.label}
-                                    <motion.span
-                                        className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#E63946] transition-all duration-300 group-hover:w-full"
-                                        initial={{ width: 0 }}
-                                        whileHover={{ width: '100%' }}
-                                    />
-                                </motion.a>
-                            ))}
+                            {menuItems.map((item, index) => {
+                                const isContact = item.label === 'Contact';
+                                return (
+                                    <motion.a
+                                        key={item.label}
+                                        href={item.href}
+                                        onClick={(e) => handleNavigation(e, item.href)}
+                                        className={`relative text-sm font-medium transition-all duration-300 group ${isContact
+                                            ? 'px-4 py-2 bg-gradient-to-r from-[#E63946] via-red-500 to-[#E63946] text-white rounded-full shadow-md hover:shadow-lg hover:scale-105 font-semibold'
+                                            : `hover:text-[#E63946] ${scrolled || !isHomePage ? 'text-slate-700' : 'text-white'}`
+                                            }`}
+                                        initial={{ opacity: 0, y: -20 }}
+                                        animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : -20 }}
+                                        transition={{ duration: 0.3, delay: isLoaded ? index * 0.1 : 0 }}
+                                        whileHover={{ y: isContact ? -2 : -2 }}
+                                    >
+                                        {item.label}
+                                        {!isContact && (
+                                            <motion.span
+                                                className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#E63946] transition-all duration-300 group-hover:w-full"
+                                                initial={{ width: 0 }}
+                                                whileHover={{ width: '100%' }}
+                                            />
+                                        )}
+                                    </motion.a>
+                                );
+                            })}
                         </div>
 
                         <motion.button
                             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                            className={`lg:hidden p-3 rounded-xl transition-all duration-300 ${scrolled ? 'text-[#0B1F3A] hover:bg-slate-100' : 'text-white hover:bg-white/10'
+                            className={`lg:hidden p-3 rounded-xl transition-all duration-300 ${scrolled || !isHomePage ? 'text-[#0B1F3A] hover:bg-slate-100' : 'text-white hover:bg-white/10'
                                 }`}
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.95 }}
@@ -190,20 +222,26 @@ export const Navbar = () => {
                         </div>
                         <div className="flex-1 p-6">
                             <div className="flex flex-col space-y-4">
-                                {menuItems.map((item, index) => (
-                                    <motion.a
-                                        key={item.label}
-                                        href={item.href}
-                                        onClick={(e) => handleNavigation(e, item.href)}
-                                        className="text-lg font-medium text-slate-700 hover:text-[#E63946] py-2 px-3 rounded-lg hover:bg-slate-50 transition-all duration-300"
-                                        initial={{ opacity: 0, x: 50 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        transition={{ duration: 0.3, delay: index * 0.1 + 0.2 }}
-                                        whileHover={{ x: 5 }}
-                                    >
-                                        {item.label}
-                                    </motion.a>
-                                ))}
+                                {menuItems.map((item, index) => {
+                                    const isContact = item.label === 'Contact';
+                                    return (
+                                        <motion.a
+                                            key={item.label}
+                                            href={item.href}
+                                            onClick={(e) => handleNavigation(e, item.href)}
+                                            className={`text-lg font-medium transition-all duration-300 ${isContact
+                                                ? 'px-4 py-3 bg-gradient-to-r from-[#E63946] via-red-500 to-[#E63946] text-white rounded-lg shadow-md hover:shadow-lg font-semibold text-center'
+                                                : 'text-slate-700 hover:text-[#E63946] py-2 px-3 rounded-lg hover:bg-slate-50'
+                                                }`}
+                                            initial={{ opacity: 0, x: 50 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            transition={{ duration: 0.3, delay: index * 0.1 + 0.2 }}
+                                            whileHover={{ x: isContact ? 0 : 5 }}
+                                        >
+                                            {item.label}
+                                        </motion.a>
+                                    );
+                                })}
                             </div>
                         </div>
                     </div>
