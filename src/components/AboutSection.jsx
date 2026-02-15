@@ -106,58 +106,27 @@ export const AboutSection = () => {
             <div className="container mx-auto px-4 md:px-8 max-w-7xl relative z-10">
                 {/* Section Header */}
                 <motion.div
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
-                    className="text-center mb-20"
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="text-center mb-12"
                 >
                     <motion.div
                         initial={{ opacity: 0, scale: 0.8 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: 0.2 }}
-                        className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-red-50 via-pink-50 to-red-50 border border-red-200 rounded-full mb-8 shadow-lg hover:shadow-xl transition-all duration-500"
-                        whileHover={{ scale: 1.05, y: -2 }}
+                        transition={{ duration: 0.6 }}
+                        className="inline-flex items-center gap-2 px-6 py-2 bg-gradient-to-r from-red-50 to-pink-50 border border-red-200 rounded-full mb-4 shadow-md"
                     >
-                        <Shield className="w-6 h-6 text-[#E63946]" />
-                        <p className="text-sm font-bold tracking-widest uppercase text-[#E63946]" spellCheck={false}>About Growth Edge</p>
-                        <Shield className="w-6 h-6 text-[#E63946]" />
+                        <div className="w-2 h-2 bg-gradient-to-r from-[#E63946] to-red-500 rounded-full animate-pulse"></div>
+                        <p className="text-sm font-black tracking-widest uppercase text-[#E63946]">About Growth Edge</p>
+                        <div className="w-2 h-2 bg-gradient-to-r from-[#E63946] to-red-500 rounded-full animate-pulse"></div>
                     </motion.div>
-
-                    <motion.h2
-                        className="text-4xl md:text-6xl font-bold font-['Outfit'] tracking-tight text-[#0B1F3A] mb-5 leading-tight"
-                        initial={{ opacity: 0, y: 30, scale: 0.9 }}
-                        whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                        viewport={{ once: true, margin: "-50px" }}
-                        transition={{ duration: 1, delay: 0.3, ease: [0.23, 1, 0.32, 1] }}
-                    >
-                        <motion.span
-                            className="bg-gradient-to-r from-[#0B1F3A] via-blue-800 to-[#0B1F3A] bg-clip-text text-transparent block leading-tight overflow-visible"
-                            whileHover={{ scale: 1.02 }}
-                            transition={{ duration: 0.3 }}
-                        >
-                            Securing Your Legacy
-                        </motion.span>
-                        <br className="my-0.5" />
-                        <motion.span
-                            className="bg-gradient-to-r from-[#E63946] to-red-600 bg-clip-text text-transparent block leading-tight overflow-visible"
-                            whileHover={{ scale: 1.02 }}
-                            transition={{ duration: 0.3 }}
-                        >
-                            Ensuring Your Future
-                        </motion.span>
-                    </motion.h2>
-
-                    <motion.p
-                        className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed mb-8"
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8, delay: 0.4 }}
-                    >
-                        For over 25 years, Growth Edge has been the trusted guardian of dreams and protector of futures for thousands of families and businesses across the nation.
-                    </motion.p>
+                    <h2 className="text-3xl md:text-4xl font-bold font-['Outfit'] text-[#0B1F3A] mb-4">
+                        Securing Your <span className="text-[#E63946]">Legacy</span>
+                    </h2>
+                    <div className="w-20 h-1 bg-gradient-to-r from-[#E63946] to-red-500 mx-auto rounded-full"></div>
                 </motion.div>
 
                 {/* Main Content Grid */}
