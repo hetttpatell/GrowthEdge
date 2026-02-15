@@ -9,9 +9,10 @@ export const HeroSection = () => {
         let observer = null; // ✅ declare in outer scope
 
         const handleLoaderComplete = () => {
+            // Wait for loader exit animation to complete before showing hero section
             setTimeout(() => {
                 setIsLoaded(true);
-            }, 0); // No delay - instant transition
+            }, 800); // Match loader's exit animation duration
         };
 
         const loaderElement = document.querySelector('[data-testid="animated-loader"]');

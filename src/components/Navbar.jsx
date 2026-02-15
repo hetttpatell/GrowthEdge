@@ -25,26 +25,29 @@ export const Navbar = () => {
         let observer = null;
 
         const handleLoaderComplete = () => {
+            // Wait for loader exit animation to complete before showing navbar
             setTimeout(() => {
                 setIsLoaded(true);
-            }, 0);
+            }, 800); // Match loader's exit animation duration
         };
 
         const handlePageLoad = (event) => {
+            // Wait for any page transition animations
             setTimeout(() => {
                 setIsLoaded(true);
                 // Check if we're on home page
                 const currentPage = event.detail?.page || 'unknown';
                 setIsHomePage(currentPage === 'home' || window.location.pathname === '/');
-            }, 0);
+            }, 300); // Small delay for page transition
         };
 
-        // Check current page on mount
+        // Check current page on mount (no loader case)
         setIsHomePage(window.location.pathname === '/');
 
         const loaderElement = document.querySelector('[data-testid="animated-loader"]');
 
         if (!loaderElement) {
+            // No loader found, show navbar immediately
             handleLoaderComplete();
         } else {
             observer = new MutationObserver((mutations) => {
@@ -77,7 +80,7 @@ export const Navbar = () => {
         { label: 'Home', href: '#home' },
         { label: 'Services', href: '/services' },
         { label: 'Awards', href: '/awards' },
-        { label: 'About', href: '#about' },
+        { label: 'About', href: '/about' },
         { label: 'Contact', href: '/contact' },
     ];
 
@@ -86,20 +89,34 @@ export const Navbar = () => {
             // Navigate to services page using React Router
             navigate('/services');
             setMobileMenuOpen(false);
+            // Scroll to top after navigation
+            window.scrollTo(0, 0);
         } else if (href === '/awards') {
             // Navigate to awards page using React Router
             navigate('/awards');
             setMobileMenuOpen(false);
+            // Scroll to top after navigation
+            window.scrollTo(0, 0);
         } else if (href === '/contact') {
             // Navigate to contact page using React Router
             navigate('/contact');
             setMobileMenuOpen(false);
+            // Scroll to top after navigation
+            window.scrollTo(0, 0);
+        } else if (href === '/about') {
+            // Navigate to about page using React Router
+            navigate('/about');
+            setMobileMenuOpen(false);
+            // Scroll to top after navigation
+            window.scrollTo(0, 0);
         } else if (href === '#home') {
             // Navigate to home page
             navigate('/');
             setMobileMenuOpen(false);
+            // Scroll to top after navigation
+            window.scrollTo(0, 0);
         } else {
-            // Handle smooth scrolling for anchor links (only works on home page)
+            // Handle smooth scrolling for other anchor links (only works on home page)
             e.preventDefault();
             const element = document.querySelector(href);
             if (element) {
@@ -109,6 +126,8 @@ export const Navbar = () => {
                 // If element doesn't exist (on services page), navigate to home
                 navigate('/');
                 setMobileMenuOpen(false);
+                // Scroll to top after navigation
+                window.scrollTo(0, 0);
             }
         }
     };

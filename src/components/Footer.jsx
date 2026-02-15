@@ -1,11 +1,53 @@
 import { Shield, Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 export const Footer = () => {
+    const navigate = useNavigate();
+
     const scrollToSection = (href) => {
         const element = document.querySelector(href);
         if (element) {
             element.scrollIntoView({ behavior: 'smooth' });
         }
+    };
+
+    const handleServiceClick = () => {
+        navigate('/services');
+        // Scroll to top after navigation
+        window.scrollTo(0, 0);
+    };
+
+    const handleCompanyClick = (href) => {
+        // Special handling for About, Awards and Contact pages
+        if (href === '#about') {
+            navigate('/about');
+            // Scroll to top after navigation
+            window.scrollTo(0, 0);
+            return;
+        }
+        if (href === '#awards') {
+            navigate('/awards');
+            // Scroll to top after navigation
+            window.scrollTo(0, 0);
+            return;
+        }
+        if (href === '#contact') {
+            navigate('/contact');
+            // Scroll to top after navigation
+            window.scrollTo(0, 0);
+            return;
+        }
+
+        // For other sections, navigate to home page and scroll to section
+        navigate('/');
+
+        // Small delay to ensure navigation completes before scrolling
+        setTimeout(() => {
+            const element = document.querySelector(href);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }, 100);
     };
 
     const footerLinks = {
@@ -77,7 +119,13 @@ export const Footer = () => {
                                 {links.map((link) => (
                                     <li key={link.label}>
                                         <button
-                                            onClick={() => scrollToSection(link.href)}
+                                            onClick={
+                                                title === 'Services'
+                                                    ? handleServiceClick
+                                                    : title === 'Company'
+                                                        ? () => handleCompanyClick(link.href)
+                                                        : () => scrollToSection(link.href)
+                                            }
                                             className="text-slate-300 hover:text-white transition-colors text-left"
                                         >
                                             {link.label}
