@@ -122,12 +122,68 @@ export const HeroSection = () => {
                 transition={{ duration: 1, delay: isLoaded ? 0.6 : 0, ease: 'easeOut' }}
             >
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    {/* Right Content - Clean Image Display */}
+                    <motion.div
+                        initial={{ opacity: 0, x: 100 }}
+                        animate={{ opacity: isLoaded ? 1 : 0, x: isLoaded ? 0 : 100 }}
+                        transition={{ duration: 0.8, delay: isLoaded ? 0.5 : 0 }}
+                        className="relative order-1 lg:order-2 mb-8 lg:mb-0"
+                    >
+                        <div className="relative">
+                            {/* Main image with clean styling */}
+                            <motion.div
+                                className="rounded-3xl overflow-hidden shadow-2xl relative"
+                                whileHover={{ scale: 1.02 }}
+                                transition={{ duration: 0.5 }}
+                            >
+                                <img
+                                    src="https://images.unsplash.com/photo-1528256507509-cc4facea43f6?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODl8MHwxfHNlYXJjaHwxfHxoYXBweSUyMGZhbWlseSUyMHN1bnNldCUyMHNpbGhvdWV0dGV8ZW58MHx8fHwxNzcwOTgyMzQ0fDA&ixlib=rb-4.1.0&q=85"
+                                    alt="Happy family"
+                                    className="w-full h-[300px] md:h-[400px] lg:h-[500px] object-cover"
+                                />
+                                {/* Subtle overlay */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                            </motion.div>
+
+                            {/* Clean stats cards */}
+                            {stats.map((stat, index) => {
+                                const Icon = stat.icon;
+                                return (
+                                    <motion.div
+                                        key={stat.label}
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 20 }}
+                                        whileHover={{ scale: 1.02 }}
+                                        transition={{ delay: isLoaded ? (0.7 + index * 0.2) : 0 }}
+                                        className="absolute bg-white/95 backdrop-blur-sm border border-white/20 rounded-2xl p-2 lg:p-4 shadow-lg"
+                                        style={{
+                                            top: `${12 + index * 25}%`,
+                                            right: index % 2 === 0 ? '-4%' : 'auto',
+                                            left: index % 2 !== 0 ? '-4%' : 'auto',
+                                            transform: 'scale(0.75)',
+                                        }}
+                                    >
+                                        <div className="flex items-center gap-2 lg:gap-3">
+                                            <div className="p-1.5 lg:p-2 bg-blue-100 rounded-lg">
+                                                <Icon size={14} className="text-blue-600" />
+                                            </div>
+                                            <div>
+                                                <p className="text-base lg:text-xl font-bold text-gray-900">{stat.value}</p>
+                                                <p className="text-xs lg:text-sm text-gray-600">{stat.label}</p>
+                                            </div>
+                                        </div>
+                                    </motion.div>
+                                );
+                            })}
+                        </div>
+                    </motion.div>
+
                     {/* Left Content */}
                     <motion.div
                         initial={{ opacity: 0, x: -100 }}
                         animate={{ opacity: isLoaded ? 1 : 0, x: isLoaded ? 0 : -100 }}
                         transition={{ duration: 1.2, delay: isLoaded ? 0.8 : 0, ease: [0.23, 1, 0.32, 1] }}
-                        className="text-white"
+                        className="text-white order-2 lg:order-1"
                     >
                         <motion.div
                             initial={{ opacity: 0, y: 30 }}
@@ -236,61 +292,6 @@ export const HeroSection = () => {
                             </motion.button>
                         </motion.div>
                     </motion.div>
-
-                    {/* Right Content - Clean Image Display */}
-                    <motion.div
-                        initial={{ opacity: 0, x: 100 }}
-                        animate={{ opacity: isLoaded ? 1 : 0, x: isLoaded ? 0 : 100 }}
-                        transition={{ duration: 0.8, delay: isLoaded ? 0.5 : 0 }}
-                        className="relative hidden lg:block"
-                    >
-                        <div className="relative">
-                            {/* Main image with clean styling */}
-                            <motion.div
-                                className="rounded-3xl overflow-hidden shadow-2xl relative"
-                                whileHover={{ scale: 1.02 }}
-                                transition={{ duration: 0.5 }}
-                            >
-                                <img
-                                    src="https://images.unsplash.com/photo-1528256507509-cc4facea43f6?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODl8MHwxfHNlYXJjaHwxfHxoYXBweSUyMGZhbWlseSUyMHN1bnNldCUyMHNpbGhvdWV0dGV8ZW58MHx8fHwxNzcwOTgyMzQ0fDA&ixlib=rb-4.1.0&q=85"
-                                    alt="Happy family"
-                                    className="w-full h-[500px] object-cover"
-                                />
-                                {/* Subtle overlay */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-                            </motion.div>
-
-                            {/* Clean stats cards */}
-                            {stats.map((stat, index) => {
-                                const Icon = stat.icon;
-                                return (
-                                    <motion.div
-                                        key={stat.label}
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 20 }}
-                                        whileHover={{ scale: 1.02 }}
-                                        transition={{ delay: isLoaded ? (0.7 + index * 0.2) : 0 }}
-                                        className="absolute bg-white/95 backdrop-blur-sm border border-white/20 rounded-2xl p-4 shadow-lg"
-                                        style={{
-                                            top: `${15 + index * 25}%`,
-                                            right: index % 2 === 0 ? '-5%' : 'auto',
-                                            left: index % 2 !== 0 ? '-5%' : 'auto',
-                                        }}
-                                    >
-                                        <div className="flex items-center gap-3">
-                                            <div className="p-2 bg-blue-100 rounded-lg">
-                                                <Icon size={20} className="text-blue-600" />
-                                            </div>
-                                            <div>
-                                                <p className="text-xl font-bold text-gray-900">{stat.value}</p>
-                                                <p className="text-sm text-gray-600">{stat.label}</p>
-                                            </div>
-                                        </div>
-                                    </motion.div>
-                                );
-                            })}
-                        </div>
-                    </motion.div>
                 </div>
             </motion.div>
 
@@ -299,4 +300,4 @@ export const HeroSection = () => {
             <div className="absolute bottom-20 right-10 w-40 h-40 bg-white/5 rounded-full blur-3xl" />
         </section>
     );
-}; 
+};
