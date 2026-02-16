@@ -269,8 +269,7 @@ export const Navbar = () => {
             >
                 <div className="container mx-auto px-6 max-w-7xl">
                     <div className="flex items-center justify-between h-20">
-                        <motion.a
-                            href="#home"
+                        <motion.button
                             onClick={(e) => handleNavigation(e, '#home')}
                             className="flex items-center space-x-3 group"
                             variants={logoVariants}
@@ -311,15 +310,14 @@ export const Navbar = () => {
                             >
                                 Growth Edge
                             </motion.span>
-                        </motion.a>
+                        </motion.button>
 
                         <div className="hidden lg:flex items-center space-x-8">
                             {menuItems.map((item, index) => {
                                 const isContact = item.label === 'Contact';
                                 return isContact ? (
-                                    <motion.a
+                                    <motion.button
                                         key={item.label}
-                                        href={item.href}
                                         onClick={(e) => handleNavigation(e, item.href)}
                                         className="px-4 py-2 bg-gradient-to-r from-[#E63946] via-red-500 to-[#E63946] text-white rounded-full shadow-md hover:shadow-lg font-semibold relative overflow-hidden group"
                                         variants={contactButtonVariants}
@@ -337,11 +335,10 @@ export const Navbar = () => {
                                             whileHover={{ x: 0 }}
                                             transition={{ duration: 0.3, ease: "easeOut" }}
                                         />
-                                    </motion.a>
+                                    </motion.button>
                                 ) : (
-                                    <motion.a
+                                    <motion.button
                                         key={item.label}
-                                        href={item.href}
                                         onClick={(e) => handleNavigation(e, item.href)}
                                         className={`relative text-sm font-medium transition-all duration-300 group ${scrolled || !isHomePage ? 'text-slate-700' : 'text-white'
                                             }`}
@@ -359,7 +356,7 @@ export const Navbar = () => {
                                             whileHover={{ width: "100%" }}
                                             transition={{ duration: 0.3, ease: "easeOut" }}
                                         />
-                                    </motion.a>
+                                    </motion.button>
                                 );
                             })}
                         </div>
@@ -430,9 +427,8 @@ export const Navbar = () => {
                                     {menuItems.map((item, index) => {
                                         const isContact = item.label === 'Contact';
                                         return (
-                                            <motion.a
+                                            <motion.button
                                                 key={item.label}
-                                                href={item.href}
                                                 onClick={(e) => handleNavigation(e, item.href)}
                                                 className={`text-lg font-medium transition-all duration-300 ${isContact
                                                     ? 'px-4 py-3 bg-gradient-to-r from-[#E63946] via-red-500 to-[#E63946] text-white rounded-lg shadow-md hover:shadow-lg font-semibold text-center'
@@ -454,7 +450,7 @@ export const Navbar = () => {
                                                 whileTap={{ scale: 0.98 }}
                                             >
                                                 {item.label}
-                                            </motion.a>
+                                            </motion.button>
                                         );
                                     })}
                                 </div>
