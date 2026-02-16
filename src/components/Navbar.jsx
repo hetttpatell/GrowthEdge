@@ -17,8 +17,21 @@ export const Navbar = () => {
             setScrolled(scrollY > 50);
             setLogoVisible(scrollY <= 100);
         };
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+
+        // Throttled scroll handler for better performance
+        let ticking = false;
+        const throttledScroll = () => {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    handleScroll();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        };
+
+        window.addEventListener('scroll', throttledScroll, { passive: true });
+        return () => window.removeEventListener('scroll', throttledScroll);
     }, []);
 
     useEffect(() => {
@@ -136,13 +149,13 @@ export const Navbar = () => {
         }
     };
 
-    // Smooth spring animation variants
+    // Optimized spring animation variants for mobile performance
     const navbarVariants = {
         hidden: {
             y: -100,
             opacity: 0,
             transition: {
-                duration: 0.4,
+                duration: 0.3,
                 ease: [0.4, 0, 0.2, 1]
             }
         },
@@ -151,12 +164,12 @@ export const Navbar = () => {
             opacity: 1,
             transition: {
                 type: "spring",
-                stiffness: 100,
+                stiffness: 80,
                 damping: 20,
                 mass: 1,
-                delay: 0.15,
+                delay: 0.1,
                 when: "beforeChildren",
-                staggerChildren: 0.08
+                staggerChildren: 0.05
             }
         }
     };
@@ -164,8 +177,8 @@ export const Navbar = () => {
     const logoVariants = {
         hidden: {
             opacity: 0,
-            x: -30,
-            scale: 0.9
+            x: -20,
+            scale: 0.95
         },
         visible: {
             opacity: 1,
@@ -173,8 +186,8 @@ export const Navbar = () => {
             scale: 1,
             transition: {
                 type: "spring",
-                stiffness: 120,
-                damping: 15,
+                stiffness: 100,
+                damping: 18,
                 mass: 0.8
             }
         }
@@ -183,8 +196,8 @@ export const Navbar = () => {
     const menuItemVariants = {
         hidden: {
             opacity: 0,
-            y: -20,
-            scale: 0.95
+            y: -15,
+            scale: 0.98
         },
         visible: (custom) => ({
             opacity: 1,
@@ -192,10 +205,10 @@ export const Navbar = () => {
             scale: 1,
             transition: {
                 type: "spring",
-                stiffness: 150,
-                damping: 20,
-                mass: 0.6,
-                delay: 0.2 + (custom * 0.05)
+                stiffness: 120,
+                damping: 22,
+                mass: 0.8,
+                delay: 0.15 + (custom * 0.03)
             }
         })
     };
@@ -203,8 +216,8 @@ export const Navbar = () => {
     const contactButtonVariants = {
         hidden: {
             opacity: 0,
-            scale: 0.8,
-            y: -15
+            scale: 0.85,
+            y: -10
         },
         visible: {
             opacity: 1,
@@ -212,10 +225,10 @@ export const Navbar = () => {
             y: 0,
             transition: {
                 type: "spring",
-                stiffness: 200,
-                damping: 18,
-                mass: 0.7,
-                delay: 0.45
+                stiffness: 150,
+                damping: 20,
+                mass: 0.8,
+                delay: 0.35
             }
         }
     };
@@ -223,8 +236,8 @@ export const Navbar = () => {
     const mobileButtonVariants = {
         hidden: {
             opacity: 0,
-            rotate: -90,
-            scale: 0.5
+            rotate: -45,
+            scale: 0.6
         },
         visible: {
             opacity: 1,
@@ -232,9 +245,9 @@ export const Navbar = () => {
             scale: 1,
             transition: {
                 type: "spring",
-                stiffness: 200,
-                damping: 20,
-                delay: 0.5
+                stiffness: 150,
+                damping: 22,
+                delay: 0.4
             }
         }
     };
@@ -357,9 +370,9 @@ export const Navbar = () => {
                                 }`}
                             variants={mobileButtonVariants}
                             whileHover={{
-                                scale: 1.1,
-                                rotate: 5,
-                                transition: { type: "spring", stiffness: 400, damping: 20 }
+                                scale: 1.05,
+                                rotate: 2,
+                                transition: { type: "spring", stiffness: 300, damping: 25 }
                             }}
                             whileTap={{ scale: 0.95 }}
                         >
@@ -378,9 +391,9 @@ export const Navbar = () => {
                         exit={{ opacity: 0, x: "100%" }}
                         transition={{
                             type: "spring",
-                            stiffness: 300,
-                            damping: 30,
-                            mass: 0.8
+                            stiffness: 200,
+                            damping: 25,
+                            mass: 0.9
                         }}
                         className="fixed inset-y-0 right-0 z-50 w-72 bg-white/95 backdrop-blur-lg shadow-2xl lg:hidden"
                     >
@@ -403,9 +416,9 @@ export const Navbar = () => {
                                     onClick={() => setMobileMenuOpen(false)}
                                     className="p-2 rounded-lg hover:bg-slate-100 transition-colors"
                                     whileHover={{
-                                        scale: 1.1,
-                                        rotate: 90,
-                                        transition: { type: "spring", stiffness: 400, damping: 20 }
+                                        scale: 1.05,
+                                        rotate: 45,
+                                        transition: { type: "spring", stiffness: 300, damping: 25 }
                                     }}
                                     whileTap={{ scale: 0.95 }}
                                 >
@@ -434,9 +447,9 @@ export const Navbar = () => {
                                                     delay: 0.1 + (index * 0.05)
                                                 }}
                                                 whileHover={{
-                                                    x: isContact ? 0 : 5,
-                                                    scale: isContact ? 1.02 : 1.05,
-                                                    transition: { type: "spring", stiffness: 400, damping: 25 }
+                                                    x: isContact ? 0 : 3,
+                                                    scale: isContact ? 1.01 : 1.02,
+                                                    transition: { type: "spring", stiffness: 300, damping: 25 }
                                                 }}
                                                 whileTap={{ scale: 0.98 }}
                                             >

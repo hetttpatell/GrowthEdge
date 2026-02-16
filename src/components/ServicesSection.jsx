@@ -88,21 +88,21 @@ export const ServicesSection = () => {
         visible: {
             opacity: 1,
             transition: {
-                staggerChildren: 0.15,
-                duration: 0.8,
+                staggerChildren: 0.1,
+                duration: 0.6,
                 ease: [0.23, 1, 0.32, 1]
             },
         },
     };
 
     const itemVariants = {
-        hidden: { opacity: 0, y: 40, scale: 0.95 },
+        hidden: { opacity: 0, y: 30, scale: 0.98 },
         visible: {
             opacity: 1,
             y: 0,
             scale: 1,
             transition: {
-                duration: 0.8,
+                duration: 0.6,
                 ease: [0.23, 1, 0.32, 1]
             },
         },
@@ -111,9 +111,9 @@ export const ServicesSection = () => {
     const floatingVariants = {
         initial: { y: 0 },
         animate: {
-            y: [-10, 10, -10],
+            y: [-3, 3, -3],
             transition: {
-                duration: 4,
+                duration: 8,
                 repeat: Infinity,
                 ease: "easeInOut"
             }
@@ -132,63 +132,63 @@ export const ServicesSection = () => {
 
     return (
         <section id="services" className="py-12 md:py-15 bg-white relative overflow-hidden" data-testid="services-section">
-            {/* Enhanced Background decorative elements */}
+            {/* Optimized Background decorative elements */}
             <motion.div
                 variants={floatingVariants}
                 initial="initial"
                 animate="animate"
-                className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-blue-200 to-cyan-200 rounded-full blur-3xl opacity-30"
+                className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-blue-200 to-cyan-200 rounded-full blur-2xl opacity-20"
             />
             <motion.div
                 variants={floatingVariants}
                 initial="initial"
                 animate="animate"
                 transition={{ delay: 1 }}
-                className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-br from-purple-200 to-pink-200 rounded-full blur-3xl opacity-30"
+                className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-br from-purple-200 to-pink-200 rounded-full blur-2xl opacity-20"
             />
 
-            {/* Animated particles */}
+            {/* Ultra-optimized particles - minimal for performance */}
             <div className="absolute inset-0 overflow-hidden">
-                {[...Array(8)].map((_, i) => (
+                {[...Array(3)].map((_, i) => (
                     <motion.div
                         key={i}
-                        className="absolute w-2 h-2 bg-blue-400 rounded-full opacity-20"
+                        className="absolute w-0.5 h-0.5 bg-blue-300/20 rounded-full"
                         initial={{
-                            x: Math.random() * window.innerWidth,
-                            y: Math.random() * window.innerHeight,
+                            x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000),
+                            y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 1000),
                             scale: 0
                         }}
                         animate={{
-                            y: [null, -Math.random() * 200 - 100],
-                            opacity: [0, 0.6, 0],
-                            scale: [0, 1, 0]
+                            y: [null, -Math.random() * 80 - 40],
+                            opacity: [0, 0.3, 0],
+                            scale: [0, 0.6, 0]
                         }}
                         transition={{
-                            duration: Math.random() * 3 + 4,
+                            duration: Math.random() * 3 + 10,
                             repeat: Infinity,
-                            delay: Math.random() * 2,
+                            delay: Math.random() * 4,
                             ease: "easeOut"
                         }}
                     />
                 ))}
             </div>
-            <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-indigo-50 rounded-full blur-3xl opacity-30" />
+            <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-indigo-50/50 rounded-full blur-2xl opacity-10" />
 
             <div className="container mx-auto px-4 md:px-8 max-w-7xl relative z-10">
                 {/* Section Header - More Professional */}
                 <motion.div
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: 15 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
+                    transition={{ duration: 0.5 }}
                     className="text-center mb-20"
                 >
                     {/* Agent Profile Badge */}
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.8 }}
+                        initial={{ opacity: 0, scale: 0.95 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: 0.2 }}
+                        transition={{ duration: 0.4, delay: 0.2 }}
                         className="flex items-center justify-center gap-4 mb-8"
                     >
                         <div className="flex items-center gap-3 px-6 py-2 bg-white border border-slate-200 rounded-full shadow-sm">
@@ -207,23 +207,23 @@ export const ServicesSection = () => {
 
                     <motion.h2
                         className="text-4xl md:text-6xl font-bold font-['Outfit'] tracking-tight text-[#0B1F3A] mb-6"
-                        initial={{ opacity: 0, y: 30, scale: 0.9 }}
+                        initial={{ opacity: 0, y: 15, scale: 0.98 }}
                         whileInView={{ opacity: 1, y: 0, scale: 1 }}
                         viewport={{ once: true, margin: "-50px" }}
-                        transition={{ duration: 1, delay: 0.3, ease: [0.23, 1, 0.32, 1] }}
+                        transition={{ duration: 0.6, delay: 0.3 }}
                     >
                         <motion.span
                             className="bg-gradient-to-r from-[#0B1F3A] via-blue-800 to-[#0B1F3A] bg-clip-text text-transparent block"
-                            whileHover={{ scale: 1.02 }}
-                            transition={{ duration: 0.3 }}
+                            whileHover={{ scale: 1.005 }}
+                            transition={{ duration: 0.15 }}
                         >
                             Complete Protection
                         </motion.span>
                         <br />
                         <motion.span
                             className="bg-gradient-to-r from-[#E63946] to-red-600 bg-clip-text text-transparent block"
-                            whileHover={{ scale: 1.02 }}
-                            transition={{ duration: 0.3 }}
+                            whileHover={{ scale: 1.005 }}
+                            transition={{ duration: 0.15 }}
                         >
                             for Your Future
                         </motion.span>
@@ -231,20 +231,20 @@ export const ServicesSection = () => {
 
                     <motion.p
                         className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed mb-8"
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.8, delay: 0.4 }}
+                        transition={{ duration: 0.5, delay: 0.4 }}
                     >
                         As an independent insurance agent, I work with top-rated carriers to find you the best coverage at the most competitive rates.
                     </motion.p>
 
                     {/* Trust indicators - More Agent-focused */}
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.8, delay: 0.5 }}
+                        transition={{ duration: 0.5, delay: 0.5 }}
                         className="flex flex-wrap justify-center gap-6 mb-8"
                     >
                         <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow-sm border border-slate-100">
@@ -267,12 +267,12 @@ export const ServicesSection = () => {
 
                     {/* Agent Contact Bar */}
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.8 }}
+                        initial={{ opacity: 0, scale: 0.95 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true, margin: "-50px" }}
-                        transition={{ duration: 0.8, delay: 0.2, ease: [0.23, 1, 0.32, 1] }}
-                        className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-red-50 via-pink-50 to-red-50 border border-red-200 rounded-full mb-8 shadow-lg hover:shadow-xl transition-all duration-500"
-                        whileHover={{ scale: 1.05, y: -2 }}
+                        transition={{ duration: 0.5, delay: 0.2 }}
+                        className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-red-50 via-pink-50 to-red-50 border border-red-200 rounded-full mb-8 shadow-lg hover:shadow-xl transition-all duration-400"
+                        whileHover={{ scale: 1.01, y: -0.5 }}
                     >
                         <div className="inline-flex items-center justify-center w-6 h-6">
                             <Shield className="w-6 h-6 text-[#E63946]" />

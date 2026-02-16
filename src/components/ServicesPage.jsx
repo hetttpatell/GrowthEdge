@@ -297,31 +297,31 @@ export const ServicesPage = () => {
 
             {/* Page Header */}
             <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 30 }}
-                transition={{ duration: 0.8 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 20 }}
+                transition={{ duration: 0.6 }}
                 className="pt-32 pb-8 bg-gradient-to-br from-white via-blue-50/30 to-cyan-50/30"
             >
                 <div className="container mx-auto px-4 md:px-8 max-w-7xl">
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: isLoaded ? 1 : 0, scale: isLoaded ? 1 : 0.8 }}
-                        transition={{ duration: 0.6, delay: 0.2 }}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: isLoaded ? 1 : 0, scale: isLoaded ? 1 : 0.9 }}
+                        transition={{ duration: 0.5, delay: 0.2 }}
                         className="text-center"
                     >
                         <motion.h1
                             className="text-4xl md:text-6xl font-bold font-['Outfit'] text-[#0B1F3A] mb-4"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 20 }}
-                            transition={{ duration: 0.8, delay: 0.4 }}
+                            initial={{ opacity: 0, y: 15 }}
+                            animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 15 }}
+                            transition={{ duration: 0.6, delay: 0.4 }}
                         >
                             Our Insurance <span className="text-[#E63946]">Services</span>
                         </motion.h1>
                         <motion.p
                             className="text-lg text-slate-600 max-w-2xl mx-auto"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 20 }}
-                            transition={{ duration: 0.8, delay: 0.6 }}
+                            initial={{ opacity: 0, y: 15 }}
+                            animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 15 }}
+                            transition={{ duration: 0.6, delay: 0.6 }}
                         >
                             Comprehensive protection solutions tailored to your unique needs. From personal security to business continuity, we've got you covered.
                         </motion.p>
@@ -329,9 +329,9 @@ export const ServicesPage = () => {
                         {/* Stats badges */}
                         <div className="flex flex-wrap justify-center gap-6 mt-12">
                             <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 20 }}
-                                transition={{ duration: 0.6, delay: 0.8 }}
+                                initial={{ opacity: 0, y: 15 }}
+                                animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 15 }}
+                                transition={{ duration: 0.5, delay: 0.8 }}
                                 className="text-center p-6"
                             >
                                 <div className="w-16 h-16 bg-gradient-to-br from-[#0B1F3A] to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
@@ -342,9 +342,9 @@ export const ServicesPage = () => {
                             </motion.div>
 
                             <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 20 }}
-                                transition={{ duration: 0.6, delay: 0.9 }}
+                                initial={{ opacity: 0, y: 15 }}
+                                animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 15 }}
+                                transition={{ duration: 0.5, delay: 0.9 }}
                                 className="text-center p-6"
                             >
                                 <div className="w-16 h-16 bg-gradient-to-br from-[#E63946] to-orange-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
@@ -355,9 +355,9 @@ export const ServicesPage = () => {
                             </motion.div>
 
                             <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 20 }}
-                                transition={{ duration: 0.6, delay: 1.0 }}
+                                initial={{ opacity: 0, y: 15 }}
+                                animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 15 }}
+                                transition={{ duration: 0.5, delay: 1.0 }}
                                 className="text-center p-6"
                             >
                                 <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
@@ -381,10 +381,10 @@ export const ServicesPage = () => {
             >
                 <div className="container mx-auto px-4 md:px-8 max-w-7xl">
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 15 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
+                        transition={{ duration: 0.5 }}
                         className="text-center mb-12"
                     >
                         <h2 className="text-3xl md:text-4xl font-bold font-['Outfit'] text-[#0B1F3A] mb-4">
@@ -400,7 +400,7 @@ export const ServicesPage = () => {
                                 ? 'bg-gradient-to-r from-[#0B1F3A] to-blue-600 text-white shadow-xl scale-105'
                                 : 'bg-white text-[#0B1F3A] border-2 border-[#0B1F3A]/20 hover:border-[#0B1F3A] hover:bg-gradient-to-r hover:from-[#0B1F3A] hover:to-blue-600 hover:text-white'
                                 }`}
-                            whileHover={{ scale: 1.05, y: -3 }}
+                            whileHover={{ scale: 1.02, y: -2 }}
                             whileTap={{ scale: 0.98 }}
                         >
                             <div className="relative z-10 flex items-center gap-4">
@@ -420,7 +420,7 @@ export const ServicesPage = () => {
                                 ? 'bg-gradient-to-r from-[#0B1F3A] to-blue-600 text-white shadow-xl scale-105'
                                 : 'bg-white text-[#0B1F3A] border-2 border-[#0B1F3A]/20 hover:border-[#0B1F3A] hover:bg-gradient-to-r hover:from-[#0B1F3A] hover:to-blue-600 hover:text-white'
                                 }`}
-                            whileHover={{ scale: 1.05, y: -3 }}
+                            whileHover={{ scale: 1.02, y: -2 }}
                             whileTap={{ scale: 0.98 }}
                         >
                             <div className="relative z-10 flex items-center gap-4">
@@ -440,7 +440,7 @@ export const ServicesPage = () => {
                                 ? 'bg-gradient-to-r from-[#0B1F3A] to-blue-600 text-white shadow-xl scale-105'
                                 : 'bg-white text-[#0B1F3A] border-2 border-[#0B1F3A]/20 hover:border-[#0B1F3A] hover:bg-gradient-to-r hover:from-[#0B1F3A] hover:to-blue-600 hover:text-white'
                                 }`}
-                            whileHover={{ scale: 1.05, y: -3 }}
+                            whileHover={{ scale: 1.02, y: -2 }}
                             whileTap={{ scale: 0.98 }}
                         >
                             <div className="relative z-10 flex items-center gap-4">
@@ -467,10 +467,10 @@ export const ServicesPage = () => {
             >
                 <div className="container mx-auto px-4 md:px-8 max-w-7xl">
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 15 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
+                        transition={{ duration: 0.5 }}
                         className="text-center mb-16"
                     >
                         <h2 className="text-3xl md:text-4xl font-bold font-['Outfit'] text-[#0B1F3A] mb-4">
@@ -500,10 +500,10 @@ export const ServicesPage = () => {
                                     key={service.title}
                                     variants={itemVariants}
                                     className="group relative overflow-hidden rounded-2xl bg-white p-6 border border-slate-200 shadow-lg hover:shadow-xl transition-all duration-300"
-                                    initial={{ opacity: 0, y: 30 }}
+                                    initial={{ opacity: 0, y: 20 }}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
-                                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                                    transition={{ duration: 0.5, delay: index * 0.08 }}
                                 >
                                     {/* Background image overlay */}
                                     <div
@@ -522,7 +522,7 @@ export const ServicesPage = () => {
                                         {/* Icon */}
                                         <motion.div
                                             className="mb-6 inline-block p-3 bg-gradient-to-br from-[#0B1F3A] to-blue-600 rounded-xl"
-                                            whileHover={{ scale: 1.1 }}
+                                            whileHover={{ scale: 1.05 }}
                                         >
                                             <Icon size={28} className="text-white" />
                                         </motion.div>

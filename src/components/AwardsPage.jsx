@@ -28,31 +28,31 @@ export const AwardsPage = () => {
 
             {/* Page Header */}
             <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 30 }}
-                transition={{ duration: 0.8 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 20 }}
+                transition={{ duration: 0.6 }}
                 className="pt-32 pb-8 bg-gradient-to-br from-white via-blue-50/30 to-cyan-50/30"
             >
                 <div className="container mx-auto px-4 md:px-8 max-w-7xl">
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: isLoaded ? 1 : 0, scale: isLoaded ? 1 : 0.8 }}
-                        transition={{ duration: 0.6, delay: 0.2 }}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: isLoaded ? 1 : 0, scale: isLoaded ? 1 : 0.9 }}
+                        transition={{ duration: 0.5, delay: 0.2 }}
                         className="text-center"
                     >
                         <motion.h1
                             className="text-4xl md:text-6xl font-bold font-['Outfit'] text-[#0B1F3A] mb-4"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 20 }}
-                            transition={{ duration: 0.8, delay: 0.4 }}
+                            initial={{ opacity: 0, y: 15 }}
+                            animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 15 }}
+                            transition={{ duration: 0.6, delay: 0.4 }}
                         >
                             Our <span className="text-[#E63946]">Awards</span> & Recognition
                         </motion.h1>
                         <motion.p
                             className="text-lg text-slate-600 max-w-2xl mx-auto"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 20 }}
-                            transition={{ duration: 0.8, delay: 0.6 }}
+                            initial={{ opacity: 0, y: 15 }}
+                            animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 15 }}
+                            transition={{ duration: 0.6, delay: 0.6 }}
                         >
                             Celebrating excellence and innovation in the insurance industry. Our commitment to quality service has been recognized by leading organizations worldwide.
                         </motion.p>
@@ -65,19 +65,19 @@ export const AwardsPage = () => {
 
             {/* Additional Content Section */}
             <motion.section
-                initial={{ opacity: 0, y: 50 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
+                transition={{ duration: 0.6 }}
                 className="py-16 bg-white"
             >
                 <div className="container mx-auto px-4 md:px-8 max-w-7xl">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         <motion.div
-                            initial={{ opacity: 0, y: 30 }}
+                            initial={{ opacity: 0, y: 15 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: 0.1 }}
+                            transition={{ duration: 0.5, delay: 0.1 }}
                             className="text-center p-6"
                         >
                             <div className="w-16 h-16 bg-gradient-to-br from-[#0B1F3A] to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
@@ -88,10 +88,10 @@ export const AwardsPage = () => {
                         </motion.div>
 
                         <motion.div
-                            initial={{ opacity: 0, y: 30 }}
+                            initial={{ opacity: 0, y: 15 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: 0.2 }}
+                            transition={{ duration: 0.5, delay: 0.2 }}
                             className="text-center p-6"
                         >
                             <div className="w-16 h-16 bg-gradient-to-br from-[#E63946] to-orange-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
@@ -102,10 +102,10 @@ export const AwardsPage = () => {
                         </motion.div>
 
                         <motion.div
-                            initial={{ opacity: 0, y: 30 }}
+                            initial={{ opacity: 0, y: 15 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: 0.3 }}
+                            transition={{ duration: 0.5, delay: 0.3 }}
                             className="text-center p-6"
                         >
                             <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
