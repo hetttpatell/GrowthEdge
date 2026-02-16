@@ -15,6 +15,8 @@ export const AnimatedLoader = ({ onComplete }) => {
     useEffect(() => {
         const timer = setTimeout(() => {
             setFadingOut(true);
+            // Dispatch event to notify navbar that loader is starting to exit
+            window.dispatchEvent(new CustomEvent('loaderExiting'));
             setTimeout(() => {
                 setShow(false);
                 setTimeout(() => onComplete(), 800);
