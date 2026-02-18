@@ -298,13 +298,14 @@ export const Navbar = () => {
                                 />
                             </motion.div>
                             <motion.span
-                                className={`text-2xl font-bold font-['Outfit'] tracking-tight transition-all duration-300 ${scrolled || !isHomePage ? 'text-[#0B1F3A]' : 'text-white'
+                                className={`text-2xl font-bold tracking-tight transition-all duration-300 ${scrolled || !isHomePage ? 'text-[#0B1F3A]' : 'text-white'
                                     }`}
+                                style={{ fontFamily: '"Roboto Slab", "Rockwell", Georgia, serif' }}
                                 animate={{
-                                    letterSpacing: scrolled ? 'normal' : '0.02em'
+                                    letterSpacing: scrolled ? '-0.01em' : '0em'
                                 }}
                                 whileHover={{
-                                    letterSpacing: '0.05em',
+                                    letterSpacing: '0.02em',
                                     transition: { duration: 0.2 }
                                 }}
                             >
