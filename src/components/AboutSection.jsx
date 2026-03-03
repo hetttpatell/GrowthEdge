@@ -107,9 +107,9 @@ export const AboutSection = () => {
                         {/* Main Image with enhanced styling */}
                         <div className="relative rounded-3xl overflow-hidden shadow-2xl group">
                             <img
-                                src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600"
+                                src="/Sarthak.jpeg"
                                 alt="Professional insurance agent"
-                                className="w-full h-[600px] object-cover transform group-hover:scale-100 transition-transform duration-300"
+                                className="w-full h-full object-cover transform group-hover:scale-100 transition-transform duration-300"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-[#0B1F3A]/70 via-transparent to-transparent" />
 
