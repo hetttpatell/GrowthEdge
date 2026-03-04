@@ -70,15 +70,29 @@ export default function Hero() {
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
                 className="inline-block"
               >
-                <Link
-                  href={hero.primaryCTA.href}
-                  className="inline-flex items-center gap-2.5 font-body font-semibold text-sm sm:text-base bg-white text-stone-800 rounded-full pl-6 sm:pl-8 pr-1.5 sm:pr-2 py-1.5 sm:py-2 transition-colors duration-300"
-                >
-                  {hero.primaryCTA.label}
-                  <span className="flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-charcoal/80">
-                    <ArrowUpRight className="w-5 h-5 text-white" />
-                  </span>
-                </Link>
+                {hero.primaryCTA.href.startsWith("http") ? (
+                  <a
+                    href={hero.primaryCTA.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2.5 font-body font-semibold text-sm sm:text-base bg-white text-stone-800 rounded-full pl-6 sm:pl-8 pr-1.5 sm:pr-2 py-1.5 sm:py-2 transition-colors duration-300"
+                  >
+                    {hero.primaryCTA.label}
+                    <span className="flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-charcoal/80">
+                      <ArrowUpRight className="w-5 h-5 text-white" />
+                    </span>
+                  </a>
+                ) : (
+                  <Link
+                    href={hero.primaryCTA.href}
+                    className="inline-flex items-center gap-2.5 font-body font-semibold text-sm sm:text-base bg-white text-stone-800 rounded-full pl-6 sm:pl-8 pr-1.5 sm:pr-2 py-1.5 sm:py-2 transition-colors duration-300"
+                  >
+                    {hero.primaryCTA.label}
+                    <span className="flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-charcoal/80">
+                      <ArrowUpRight className="w-5 h-5 text-white" />
+                    </span>
+                  </Link>
+                )}
               </motion.div>
 
               {/* Secondary CTA */}

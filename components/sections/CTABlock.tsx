@@ -36,14 +36,14 @@ const mdBottom = [
 
 // ── Mobile (10 cols) ──
 const smTop = [
-  [0, 0, 1, 1, 0, 0, 0, 1, 1, 0],
-  [1, 0, 0, 1, 0, 1, 1, 0, 1, 0],
-  [1, 1, 1, 0, 1, 1, 0, 1, 1, 1],
+  [1, 0, 0, 1, 0, 0, 1, 0, 0, 1],
+  [1, 0, 1, 1, 0, 1, 1, 0, 1, 0],
+  [1, 1, 1, 1, 1, 0, 1, 1, 0, 1],
 ];
 const smBottom = [
   [1, 1, 0, 1, 1, 0, 1, 1, 1, 1],
   [0, 1, 1, 0, 1, 0, 0, 1, 0, 1],
-  [0, 0, 1, 0, 0, 0, 0, 1, 0, 0],
+  [1, 0, 1, 0, 0, 0, 0, 1, 0, 0],
 ];
 
 function PixelBorder({ sm, md, lg }: { sm: { cols: number; pattern: number[][] }; md: { cols: number; pattern: number[][] }; lg: { cols: number; pattern: number[][] } }) {
@@ -52,19 +52,19 @@ function PixelBorder({ sm, md, lg }: { sm: { cols: number; pattern: number[][] }
       {/* Mobile */}
       <div className="grid w-full sm:hidden" style={{ gridTemplateColumns: `repeat(${sm.cols}, 1fr)` }} aria-hidden="true">
         {sm.pattern.flat().map((cell, i) => (
-          <div key={i} className={`aspect-square ${cell ? "bg-[#3c3933]" : "bg-cream/95"}`} />
+          <div key={i} className={`aspect-square ${cell ? "bg-[#3c3933]" : "bg-cream/95"}`} style={{ outline: `0.5px solid ${cell ? '#3c3933' : '#F5F2EB'}` }} />
         ))}
       </div>
       {/* Tablet */}
       <div className="hidden sm:grid lg:hidden w-full" style={{ gridTemplateColumns: `repeat(${md.cols}, 1fr)` }} aria-hidden="true">
         {md.pattern.flat().map((cell, i) => (
-          <div key={i} className={`aspect-square ${cell ? "bg-[#3c3933]" : "bg-cream/95"}`} />
+          <div key={i} className={`aspect-square ${cell ? "bg-[#3c3933]" : "bg-cream/95"}`} style={{ outline: `0.5px solid ${cell ? '#3c3933' : '#F5F2EB'}` }} />
         ))}
       </div>
       {/* Desktop */}
       <div className="hidden lg:grid w-full" style={{ gridTemplateColumns: `repeat(${lg.cols}, 1fr)` }} aria-hidden="true">
         {lg.pattern.flat().map((cell, i) => (
-          <div key={i} className={`aspect-square ${cell ? "bg-[#3c3933]" : "bg-cream/95"}`} />
+          <div key={i} className={`aspect-square ${cell ? "bg-[#3c3933]" : "bg-cream/95"}`} style={{ outline: `0.5px solid ${cell ? '#3c3933' : '#F5F2EB'}` }} />
         ))}
       </div>
     </>

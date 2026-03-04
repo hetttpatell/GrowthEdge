@@ -44,8 +44,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${dmSerif.variable} ${dmSans.variable} ${inter.variable} ${poppins.variable} antialiased`}>
+      <body suppressHydrationWarning className={`${dmSerif.variable} ${dmSans.variable} ${inter.variable} ${poppins.variable} antialiased`}>
         {children}
+        {/* Auto-show / auto-hide scrollbar on scroll */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){var t;function h(){document.body.classList.add('is-scrolling');clearTimeout(t);t=setTimeout(function(){document.body.classList.remove('is-scrolling')},1200)}window.addEventListener('scroll',h,{passive:true});document.addEventListener('scroll',h,{passive:true,capture:true})})();`,
+          }}
+        />
       </body>
     </html>
   );

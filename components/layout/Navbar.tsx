@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
@@ -9,10 +10,22 @@ import { siteContent } from "@/data/content";
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  // On non-homepage routes (e.g. /blog/*), always use dark text and fix anchor links
+  const isHome = pathname === "/";
 
   const { navLinks } = siteContent;
   const regularLinks = navLinks.filter((link) => !link.isButton);
   const ctaLink = navLinks.find((link) => link.isButton);
+
+  // Prefix hash-only links with "/" when not on the homepage so they navigate back
+  const resolveHref = (href: string) => {
+    if (!isHome && href.startsWith("#")) {
+      return `/${href}`;
+    }
+    return href;
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,8 +53,8 @@ export default function Navbar() {
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
         className={`fixed left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled
-            ? "top-0 bg-cream/95 backdrop-blur-md shadow-sm"
+          isScrolled || !isHome
+            ? "top-0 bg-cream/60 backdrop-blur-md shadow-sm"
             : "top-2 bg-transparent"
         }`}
       >
@@ -49,7 +62,7 @@ export default function Navbar() {
           <div className="flex items-center justify-between h-16 sm:h-20">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2 relative z-10">
-              <span className={`font-heading text-xl sm:text-2xl transition-colors duration-300 ${isScrolled ? 'text-stone-800' : 'text-white'}`}>
+              <span className={`font-heading text-xl sm:text-2xl transition-colors duration-300 ${isScrolled || !isHome ? 'text-stone-800' : 'text-white'}`}>
                 Growth Edge
               </span>
             </Link>
@@ -59,16 +72,16 @@ export default function Navbar() {
               {regularLinks.map((link) => (
                 <Link
                   key={link.label}
-                  href={link.href}
-                  className={`font-body text-sm font-medium transition-colors duration-300 ${isScrolled ? 'text-stone-800/70 hover:text-stone-800' : 'text-white/80 hover:text-white'}`}
+                  href={resolveHref(link.href)}
+                  className={`font-body text-sm font-medium transition-colors duration-300 ${isScrolled || !isHome ? 'text-stone-800/70 hover:text-stone-800' : 'text-white/80 hover:text-white'}`}
                 >
                   {link.label}
                 </Link>
               ))}
               {ctaLink && (
                 <Link
-                  href={ctaLink.href}
-                  className={`font-body text-sm font-semibold px-6 py-2.5 rounded-full border-2 transition-all duration-300 ${isScrolled ? 'border-charcoal/20 text-stone-800 hover:border-charcoal hover:bg-charcoal hover:text-white' : 'border-white/40 text-white hover:border-white hover:bg-white hover:text-stone-800'}`}
+                  href={resolveHref(ctaLink.href)}
+                  className={`font-body text-sm font-semibold px-6 py-2.5 rounded-full border-2 transition-all duration-300 ${isScrolled || !isHome ? 'border-charcoal/20 text-stone-800 hover:border-charcoal hover:bg-charcoal hover:text-white' : 'border-white/40 text-white hover:border-white hover:bg-white hover:text-stone-800'}`}
                 >
                   {ctaLink.label}
                 </Link>
@@ -78,7 +91,7 @@ export default function Navbar() {
             {/* Mobile hamburger */}
             <button
               onClick={() => setIsMobileMenuOpen(true)}
-              className={`lg:hidden p-2 transition-colors relative z-10 ${isScrolled ? 'text-stone-800' : 'text-white'}`}
+              className={`lg:hidden p-2 transition-colors relative z-10 ${isScrolled || !isHome ? 'text-stone-800' : 'text-white'}`}
               aria-label="Open menu"
             >
               <Menu size={24} />
@@ -128,7 +141,7 @@ export default function Navbar() {
                       transition={{ delay: 0.05 * index + 0.1 }}
                     >
                       <Link
-                        href={link.href}
+                        href={resolveHref(link.href)}
                         onClick={() => setIsMobileMenuOpen(false)}
                         className="block font-body text-base font-medium text-stone-800 hover:text-olive transition-colors py-3 border-b border-edge"
                       >
@@ -144,7 +157,7 @@ export default function Navbar() {
                       className="mt-6"
                     >
                       <Link
-                        href={ctaLink.href}
+                        href={resolveHref(ctaLink.href)}
                         onClick={() => setIsMobileMenuOpen(false)}
                         className="block w-full text-center font-body text-sm font-semibold px-6 py-3 rounded-full bg-charcoal text-white"
                       >

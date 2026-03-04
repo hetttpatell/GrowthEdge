@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { siteContent } from "@/data/content";
 import Button from "@/components/ui/Button";
@@ -42,7 +43,7 @@ export default function ExpertTips() {
               transition={{ delay: index * 0.12, duration: 0.5 }}
               className="group"
             >
-              <a href={tip.href} className="block">
+              <Link href={tip.href} className="block">
                 {/* Image */}
                 <div className="relative w-full aspect-4/3 rounded-2xl overflow-hidden mb-5 border border-edge">
                   <Image
@@ -74,7 +75,7 @@ export default function ExpertTips() {
                 <span className="inline-flex items-center gap-1.5 font-body text-sm font-medium text-stone-800 group-hover:gap-2.5 transition-all duration-300">
                   Read More <ArrowRight size={14} />
                 </span>
-              </a>
+              </Link>
             </motion.article>
           ))}
         </div>

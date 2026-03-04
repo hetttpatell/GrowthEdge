@@ -1,9 +1,21 @@
+"use client";
+
 import { Mail, Phone, MapPin } from "lucide-react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { siteContent } from "@/data/content";
 
 export default function Footer() {
   const { footer } = siteContent;
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+
+  const resolveHref = (href: string) => {
+    if (!isHome && href.startsWith("#")) {
+      return `/${href}`;
+    }
+    return href;
+  };
 
   return (
     <footer id="contact" className="relative bg-cream/95 text-stone-800">
@@ -54,7 +66,7 @@ export default function Footer() {
                 {column.links.map((link) => (
                   <li key={link.label}>
                     <Link
-                      href={link.href}
+                      href={resolveHref(link.href)}
                       className="font-body text-sm text-muted hover:text-olive transition-colors duration-200"
                     >
                       {link.label}

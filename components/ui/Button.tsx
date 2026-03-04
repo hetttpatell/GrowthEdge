@@ -51,6 +51,16 @@ export default function Button({
   };
 
   if (href) {
+    const isExternal = href.startsWith("http");
+    if (isExternal) {
+      return (
+        <motion.div {...motionProps} className="inline-block">
+          <a href={href} target="_blank" rel="noopener noreferrer" className={classes}>
+            {children}
+          </a>
+        </motion.div>
+      );
+    }
     return (
       <motion.div {...motionProps} className="inline-block">
         <Link href={href} className={classes}>

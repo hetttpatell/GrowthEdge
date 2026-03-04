@@ -24,6 +24,8 @@ export interface ServiceItem {
   image: string;
   href: string;
   featured?: boolean;
+  description: string;
+  highlights: string[];
 }
 
 export interface TrustContent {
