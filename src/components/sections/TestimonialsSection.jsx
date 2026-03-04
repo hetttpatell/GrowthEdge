@@ -195,12 +195,20 @@ export const TestimonialsSection = () => {
                                     >
                                         <div className={`w-32 h-32 lg:w-40 lg:h-40 rounded-3xl flex items-end justify-center overflow-hidden border-4 border-white shadow-xl ${testimonials[activeIndex].gender === 'male' ? 'bg-[#CBD5E1]' : 'bg-[#D1D5DB]'
                                             }`}>
-                                            <svg viewBox="0 0 100 100" className="w-[85%] h-[85%] text-white" fill="currentColor">
-                                                {/* Professional Silhouette Head */}
-                                                <circle cx="50" cy="35" r="18" />
-                                                {/* Professional Silhouette Body */}
-                                                <path d="M50 60c-22 0-38 16-38 32v8h76v-8c0-16-16-32-38-32z" />
-                                            </svg>
+                                            {testimonials[activeIndex].gender === 'male' ? (
+                                                <svg viewBox="0 0 100 100" className="w-[85%] h-[85%] text-white" fill="currentColor">
+                                                    {/* Clean Male Silhouette */}
+                                                    <circle cx="50" cy="35" r="18" />
+                                                    <path d="M50 60c-22 0-38 16-38 32v8h76v-8c0-16-16-32-38-32z" />
+                                                </svg>
+                                            ) : (
+                                                <svg viewBox="0 0 100 100" className="w-[85%] h-[85%] text-white" fill="currentColor">
+                                                    {/* Graceful Female Silhouette */}
+                                                    <path d="M50 18c-12 0-22 10-22 22v15c0 4 3 8 8 8h28c5 0 8-4 8-8V40c0-12-10-22-22-22z" />
+                                                    <circle cx="50" cy="40" r="16" />
+                                                    <path d="M50 63c-20 0-35 15-35 30v7h70v-7c0-15-15-30-35-30z" />
+                                                </svg>
+                                            )}
                                         </div>
                                         <motion.div
                                             initial={{ opacity: 0, scale: 0 }}
