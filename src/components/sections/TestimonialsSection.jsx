@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Star, Quote, MapPin, Briefcase, Users, Heart, Sparkles, TrendingUp, Shield, Award, ChevronLeft, ChevronRight, Play, Pause } from 'lucide-react';
+import { Star, Quote, MapPin, Briefcase, Users, Heart, Sparkles, TrendingUp, Shield, Award, ChevronLeft, ChevronRight, Play, Pause, UserCircle } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 
 export const TestimonialsSection = () => {
@@ -11,7 +11,7 @@ export const TestimonialsSection = () => {
             name: 'Rajesh Sharma',
             role: 'Business Owner, Mumbai',
             location: 'Maharashtra',
-            image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400',
+            gender: 'male',
             rating: 5,
             text: 'Growth Edge transformed our business insurance strategy. Their comprehensive coverage options and exceptional customer service have given us complete peace of mind. The claims process is seamless and their team truly understands our industry needs.',
             category: 'business',
@@ -23,7 +23,7 @@ export const TestimonialsSection = () => {
             name: 'Priya Nair',
             role: 'Family Head, Bangalore',
             location: 'Karnataka',
-            image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400',
+            gender: 'female',
             rating: 5,
             text: 'As a mother of two, securing my family\'s future was my top priority. Growth Edge provided the perfect term insurance plan with affordable premiums. The wellness benefits and investment options have exceeded our expectations.',
             category: 'family',
@@ -35,7 +35,7 @@ export const TestimonialsSection = () => {
             name: 'Dr. Amit Kumar',
             role: 'Healthcare Professional, Delhi',
             location: 'NCR',
-            image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400',
+            gender: 'male',
             rating: 5,
             text: 'Being in the medical field, I understand the importance of good health insurance. Growth Edge\'s health coverage is comprehensive with cashless facilities across 500+ hospitals. Their preventive care programs are outstanding.',
             category: 'health',
@@ -47,7 +47,7 @@ export const TestimonialsSection = () => {
             name: 'Ananya Reddy',
             role: 'IT Professional, Hyderabad',
             location: 'Telangana',
-            image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400',
+            gender: 'female',
             rating: 5,
             text: 'I needed a reliable investment-cum-insurance plan for my retirement goals. Growth Edge offered excellent ULIP plans with good returns. The digital platform makes tracking investments effortless and transparent.',
             category: 'investment',
@@ -59,7 +59,7 @@ export const TestimonialsSection = () => {
             name: 'Vikram Singh',
             role: 'Manufacturing Unit Owner, Pune',
             location: 'Maharashtra',
-            image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400',
+            gender: 'male',
             rating: 5,
             text: 'Running a manufacturing business comes with unique risks. Growth Edge provided tailored industrial insurance covering equipment and liability. Their risk assessment team helped us identify and mitigate potential threats effectively.',
             category: 'business',
@@ -71,7 +71,7 @@ export const TestimonialsSection = () => {
             name: 'Meera Patel',
             role: 'Senior Citizen, Ahmedabad',
             location: 'Gujarat',
-            image: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=400',
+            gender: 'female',
             rating: 5,
             text: 'At 65, finding comprehensive health insurance was challenging. Growth Edge offered senior citizen-friendly plans with excellent wellness programs. No waiting periods for existing conditions and quick claim settlements.',
             category: 'health',
@@ -193,11 +193,15 @@ export const TestimonialsSection = () => {
                                         transition={{ duration: 0.4, delay: 0.1 }}
                                         className="relative inline-block"
                                     >
-                                        <img
-                                            src={testimonials[activeIndex].image}
-                                            alt={testimonials[activeIndex].name}
-                                            className="w-32 h-32 lg:w-40 lg:h-40 rounded-2xl object-cover border-4 border-white shadow-lg"
-                                        />
+                                        <div className={`w-32 h-32 lg:w-40 lg:h-40 rounded-3xl flex items-end justify-center overflow-hidden border-4 border-white shadow-xl ${testimonials[activeIndex].gender === 'male' ? 'bg-[#CBD5E1]' : 'bg-[#D1D5DB]'
+                                            }`}>
+                                            <svg viewBox="0 0 100 100" className="w-[85%] h-[85%] text-white" fill="currentColor">
+                                                {/* Professional Silhouette Head */}
+                                                <circle cx="50" cy="35" r="18" />
+                                                {/* Professional Silhouette Body */}
+                                                <path d="M50 60c-22 0-38 16-38 32v8h76v-8c0-16-16-32-38-32z" />
+                                            </svg>
+                                        </div>
                                         <motion.div
                                             initial={{ opacity: 0, scale: 0 }}
                                             animate={{ opacity: 1, scale: 1 }}

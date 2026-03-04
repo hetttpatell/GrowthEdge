@@ -85,11 +85,11 @@ export const ContactPage = () => {
                                 className="text-center lg:text-left"
                             >
                                 <div className="relative inline-block mb-6">
-                                    <div className="w-48 h-48 md:w-56 md:h-56 mx-auto lg:mx-0 rounded-2xl overflow-hidden shadow-lg border-4 border-white/50 bg-gradient-to-br from-[#0B1F3A] to-blue-600">
+                                    <div className="w-48 aspect-square md:w-64 mx-auto lg:mx-0 rounded-2xl overflow-hidden shadow-lg border-4 border-white/50 bg-gradient-to-br from-[#0B1F3A] to-blue-600">
                                         <img
-                                            src="/sarthak-photo.jpg"
+                                            src="Sarthak.jpeg"
                                             alt="Sarthak Shukla"
-                                            className="w-full h-full object-cover"
+                                            className="w-full h-full object-cover object-top"
                                         />
                                     </div>
                                     <div className="absolute -bottom-2 -right-2 bg-gradient-to-r from-[#E63946] to-orange-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
@@ -111,7 +111,7 @@ export const ContactPage = () => {
                                         </div>
                                         <div>
                                             <p className="text-sm text-slate-500">Direct Line</p>
-                                            <p className="text-lg font-semibold text-[#0B1F3A]">(555) 123-4567</p>
+                                            <p className="text-lg font-semibold text-[#0B1F3A]">(+91) 8306934343</p>
                                         </div>
                                     </div>
 
@@ -121,7 +121,7 @@ export const ContactPage = () => {
                                         </div>
                                         <div>
                                             <p className="text-sm text-slate-500">Email</p>
-                                            <p className="text-lg font-semibold text-[#0B1F3A]">john.davidson@growthedge.com</p>
+                                            <p className="text-lg font-semibold text-[#0B1F3A]">info.growthedgeinvestment@gmail.com</p>
                                         </div>
                                     </div>
                                 </div>
@@ -149,7 +149,7 @@ export const ContactPage = () => {
 
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className="bg-gradient-to-br from-blue-50 to-cyan-50 p-4 rounded-xl">
-                                        <div className="text-3xl font-bold text-[#0B1F3A] mb-1">10,000+</div>
+                                        <div className="text-3xl font-bold text-[#0B1F3A] mb-1">600+</div>
                                         <div className="text-sm text-slate-600">Happy Clients</div>
                                     </div>
                                     <div className="bg-gradient-to-br from-red-50 to-orange-50 p-4 rounded-xl">

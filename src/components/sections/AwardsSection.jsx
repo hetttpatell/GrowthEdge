@@ -3,10 +3,10 @@ import { Award, Trophy, Star, Medal, Sparkles } from 'lucide-react';
 
 export const AwardsSection = () => {
     const awards = [
-        { icon: Trophy, title: 'Best Insurance Provider 2024', organization: 'Forbes Finance', year: '2024' },
-        { icon: Award, title: 'Excellence in Customer Service', organization: 'Bloomberg Business', year: '2023' },
-        { icon: Star, title: 'Top Rated Insurance Company', organization: 'TechCrunch', year: '2024' },
-        { icon: Medal, title: 'InsureTech Innovation Award', organization: 'Insurance Times', year: '2023' },
+        { icon: Trophy, title: 'Best Insurance Provider', organization: 'Forbes Finance', year: '2025' },
+        { icon: Award, title: 'Excellence in Customer Service', organization: 'Bloomberg Business', year: '2025' },
+        { icon: Star, title: 'Top Rated Insurance Company', organization: 'TechCrunch', year: '2025' },
+        { icon: Medal, title: 'InsureTech Innovation Award', organization: 'Insurance Times', year: '2025' },
     ];
 
     const containerVariants = {

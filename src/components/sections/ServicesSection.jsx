@@ -122,12 +122,12 @@ export const ServicesSection = () => {
 
     const agentInfo = {
         name: "Sarthak Shukla",
-        title: "Senior Insurance Agent",
+        title: "Senior Insurance Advisor",
         license: "LIC-A-12345-67890",
-        experience: "5+ Years",
-        phone: "1-800-555-0199",
-        email: "sarah.mitchell@insurepro.com",
-        photo: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3MjQ3OTB8MHwxfHNlYXJjaHwxfHxmZW1hbGUlMjBidXNpbmVzcyUyMHByb2Zlc3Npb25hbCUyMGhlYWRzaG90JTIwc21pbGluZ3xlbnwwfHx8fDE3NzA5ODU2NDB8MA&ixlib=rb-4.1.0&q=85"
+        experience: "8+ Years",
+        phone: "+91 98765 43210",
+        email: "rahul.sharma@growthedge.in",
+        photo: "Sarthak.jpeg"
     };
 
     return (
@@ -253,11 +253,11 @@ export const ServicesSection = () => {
                         </div>
                         <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow-sm border border-slate-100">
                             <Users className="w-5 h-5 text-[#E63946]" />
-                            <span className="text-sm font-semibold text-slate-700">1,200+ Clients</span>
+                            <span className="text-sm font-semibold text-slate-700">510+ Clients</span>
                         </div>
                         <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow-sm border border-slate-100">
                             <TrendingUp className="w-5 h-5 text-[#E63946]" />
-                            <span className="text-sm font-semibold text-slate-700">98% Retention</span>
+                            <span className="text-sm font-semibold text-slate-700">87% Retention</span>
                         </div>
                         <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow-sm border border-slate-100">
                             <Clock className="w-5 h-5 text-[#E63946]" />

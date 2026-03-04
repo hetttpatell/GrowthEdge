@@ -35,9 +35,9 @@ const AnimatedCounter = ({ end, duration = 2000, suffix = '' }) => {
 
 export const AboutSection = () => {
     const stats = [
-        { icon: Users, value: 5000, suffix: '+', label: 'Happy Clients', color: 'from-blue-500 to-cyan-500' },
-        { icon: TrendingUp, value: 98, suffix: '%', label: 'Claim Success Rate', color: 'from-green-500 to-emerald-500' },
-        { icon: Award, value: 20, suffix: '+', label: 'Industry Awards', color: 'from-purple-500 to-pink-500' },
+        { icon: Users, value: `${600}`, suffix: '+', label: 'Happy Clients', color: 'from-blue-500 to-cyan-500' },
+        { icon: TrendingUp, value: 87, suffix: '%', label: 'Claim Success Rate', color: 'from-green-500 to-emerald-500' },
+        { icon: Award, value: 4, suffix: '+', label: 'Industry Awards', color: 'from-purple-500 to-pink-500' },
     ];
 
     const coreValues = [
@@ -149,7 +149,7 @@ export const AboutSection = () => {
                                 </div>
                                 <div>
                                     <p className="text-4xl font-bold text-[#0B1F3A] font-['Outfit']">
-                                        <AnimatedCounter end={25} suffix="+" />
+                                        <AnimatedCounter end={4} suffix="+" />
                                     </p>
                                     <p className="text-sm text-slate-600 font-medium">Years Excellence</p>
                                 </div>

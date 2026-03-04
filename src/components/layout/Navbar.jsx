@@ -1,21 +1,18 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useOptimizedScroll } from '../../hooks/useOptimizedScroll';
 import { fadeInDown, slideInRight } from '../../utils/animationVariants';
 
 export const Navbar = () => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const [logoVisible, setLogoVisible] = useState(true);
     const [isLoaded, setIsLoaded] = useState(false);
     const [isHomePage, setIsHomePage] = useState(true);
     const navigate = useNavigate();
+    const location = useLocation();
     const { scrollY, scrolled } = useOptimizedScroll(50);
 
-    useEffect(() => {
-        setLogoVisible(scrollY <= 100);
-    }, [scrollY]);
 
     useEffect(() => {
         let observer = null;
@@ -238,9 +235,9 @@ export const Navbar = () => {
     return (
         <>
             <motion.nav
-                className={`fixed top-0 w-full z-40 transition-all duration-300 ${scrolled || !isHomePage
-                    ? 'bg-white/95 backdrop-blur-lg border-b border-slate-200/60 shadow-lg'
-                    : 'bg-transparent'
+                className={`fixed top-0 w-full z-40 transition-all duration-500 ease-in-out ${scrolled || !isHomePage
+                    ? 'bg-white/90 backdrop-blur-xl border-b border-slate-200/50 shadow-[0_8px_30px_rgb(0,0,0,0.08)] py-1'
+                    : 'bg-transparent py-3'
                     }`}
                 variants={navbarVariants}
                 initial="hidden"
@@ -257,39 +254,30 @@ export const Navbar = () => {
                             className="flex items-center space-x-3 group"
                             variants={logoVariants}
                             whileHover={{
-                                scale: 1.05,
+                                scale: 1.02,
                                 transition: { type: "spring", stiffness: 400, damping: 25 }
                             }}
                             whileTap={{ scale: 0.98 }}
                         >
                             <motion.div
-                                animate={{
-                                    opacity: logoVisible ? 1 : 0,
-                                    scale: logoVisible ? 1 : 0.8,
-                                    x: logoVisible ? 0 : -10
-                                }}
-                                transition={{
-                                    duration: 0.4,
-                                    ease: [0.4, 0, 0.2, 1]
-                                }}
-                                className="overflow-hidden"
+                                className="relative flex items-center justify-center overflow-hidden"
                             >
                                 <img
                                     src="/logo.png"
                                     alt="Growth Edge"
-                                    className="h-25 w-25 object-contain transition-transform duration-300 group-hover:scale-110"
+                                    className="h-10 w-auto md:h-12 object-contain transition-transform duration-500 group-hover:scale-110 drop-shadow-md"
                                 />
                             </motion.div>
                             <motion.span
-                                className={`text-2xl font-bold tracking-tight transition-all duration-300 ${scrolled || !isHomePage ? 'text-[#0B1F3A]' : 'text-white'
+                                className={`text-2xl font-semibold capitalize transition-all duration-500 ${scrolled || !isHomePage ? 'text-[#0B1F3A]' : 'text-white'
                                     }`}
-                                style={{ fontFamily: '"Roboto Slab", "Rockwell", Georgia, serif' }}
+                                style={{ fontFamily: '"Playfair Display", Georgia, serif' }}
                                 animate={{
-                                    letterSpacing: scrolled ? '-0.01em' : '0em'
+                                    letterSpacing: scrolled ? '0.02em' : '0.05em'
                                 }}
                                 whileHover={{
-                                    letterSpacing: '0.02em',
-                                    transition: { duration: 0.2 }
+                                    letterSpacing: '0.08em',
+                                    transition: { duration: 0.4, ease: 'easeOut' }
                                 }}
                             >
                                 Growth Edge
@@ -303,7 +291,7 @@ export const Navbar = () => {
                                     <motion.button
                                         key={item.label}
                                         onClick={(e) => handleNavigation(e, item.href)}
-                                        className="px-4 py-2 bg-gradient-to-r from-[#E63946] via-red-500 to-[#E63946] text-white rounded-full shadow-md hover:shadow-lg font-semibold relative overflow-hidden group"
+                                        className="px-6 py-2.5 bg-gradient-to-r from-[#E63946] via-red-500 to-[#E63946] text-white rounded-full shadow-[0_4px_14px_0_rgba(230,57,70,0.39)] hover:shadow-[0_6px_20px_rgba(230,57,70,0.23)] font-semibold relative overflow-hidden group transition-all duration-300"
                                         variants={contactButtonVariants}
                                         whileHover={{
                                             scale: 1.05,
@@ -324,21 +312,31 @@ export const Navbar = () => {
                                     <motion.button
                                         key={item.label}
                                         onClick={(e) => handleNavigation(e, item.href)}
-                                        className={`relative text-sm font-medium transition-all duration-300 group ${scrolled || !isHomePage ? 'text-slate-700' : 'text-white'
+                                        className={`relative px-4 py-2 text-sm font-medium transition-colors duration-300 rounded-full group ${location.pathname === item.href || (location.pathname === '/' && item.href === '#home')
+                                            ? (scrolled || !isHomePage ? 'text-[#E63946]' : 'text-white')
+                                            : (scrolled || !isHomePage ? 'text-slate-500 hover:text-[#E63946]' : 'text-white/80 hover:text-white')
                                             }`}
                                         variants={menuItemVariants}
                                         custom={index}
                                         whileHover={{
+                                            scale: 1.05,
                                             y: -2,
-                                            transition: { type: "spring", stiffness: 400, damping: 25 }
+                                            textShadow: scrolled || !isHomePage ? '0 4px 12px rgba(230,57,70,0.3)' : '0 4px 12px rgba(255,255,255,0.4)',
+                                            transition: { type: "spring", stiffness: 400, damping: 15 }
                                         }}
+                                        whileTap={{ scale: 0.95 }}
                                     >
-                                        {item.label}
-                                        <motion.span
-                                            className="absolute bottom-0 left-0 h-0.5 bg-[#E63946]"
-                                            initial={{ width: 0 }}
-                                            whileHover={{ width: "100%" }}
-                                            transition={{ duration: 0.3, ease: "easeOut" }}
+                                        <span className="relative z-10">{item.label}</span>
+                                        {/* Extremely elegant animated dot-to-line effect */}
+                                        <motion.div
+                                            className={`absolute -bottom-2 left-1/2 w-1.5 h-1.5 rounded-full opacity-0 ${scrolled || !isHomePage ? 'bg-[#E63946]' : 'bg-white'}`}
+                                            initial={{ x: '-50%', scale: 0 }}
+                                            whileHover={{
+                                                opacity: 1,
+                                                scale: [0, 1.5, 1],
+                                                width: '60%',
+                                                transition: { duration: 0.4, ease: "easeOut" }
+                                            }}
                                         />
                                     </motion.button>
                                 );

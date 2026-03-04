@@ -3,10 +3,12 @@ import { useEffect, useState } from 'react';
 import { Shield, TrendingUp, Award, Heart, ArrowRight } from 'lucide-react';
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 import { fadeInUp, scaleIn, staggerContainer, staggerItem, smoothTransition } from '../../utils/animationVariants';
+import { useNavigate } from 'react-router-dom';
 
 export const HeroSection = () => {
     const [isLoaded, setIsLoaded] = useState(false);
     const { targetRef, hasIntersected } = useIntersectionObserver({ threshold: 0.1 });
+    const navigate = useNavigate();
 
     useEffect(() => {
         const handleLoaderComplete = () => {
@@ -38,9 +40,9 @@ export const HeroSection = () => {
     };
 
     const stats = [
-        { icon: Shield, label: 'Years of Trust', value: '25+', color: 'from-blue-500 to-cyan-500' },
-        { icon: TrendingUp, label: 'Claims Success', value: '98%', color: 'from-green-500 to-emerald-500' },
-        { icon: Award, label: 'Industry Awards', value: '50+', color: 'from-purple-500 to-pink-500' },
+        { icon: Shield, label: 'Years of Trust', value: '4+', color: 'from-blue-500 to-cyan-500' },
+        { icon: TrendingUp, label: 'Claims Success', value: '87%', color: 'from-green-500 to-emerald-500' },
+        { icon: Award, label: 'Industry Awards', value: '4', color: 'from-purple-500 to-pink-500' },
     ];
 
     const features = [
@@ -199,11 +201,11 @@ export const HeroSection = () => {
                             initial={{ opacity: 0, y: 50, scale: 0.9 }}
                             animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 50, scale: isLoaded ? 1 : 0.9 }}
                             transition={{ delay: isLoaded ? 1.3 : 0, duration: 1.2, ease: [0.23, 1, 0.32, 1] }}
-                            className="text-5xl md:text-7xl font-bold font-['Outfit'] tracking-tight leading-[1.1] mb-8"
+                            className="text-5xl sm:text-6xl md:text-7xl lg:text-[5rem] font-bold font-sans tracking-tight leading-[1.1] pb-4 mb-6"
                             data-testid="hero-headline"
                         >
                             <motion.span
-                                className="block bg-gradient-to-r from-white via-blue-100 to-cyan-100 bg-clip-text text-transparent"
+                                className="block text-white"
                                 initial={{ opacity: 0, x: -50 }}
                                 animate={{ opacity: isLoaded ? 1 : 0, x: isLoaded ? 0 : -50 }}
                                 transition={{ delay: isLoaded ? 1.4 : 0, duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
@@ -211,12 +213,12 @@ export const HeroSection = () => {
                                 Protecting Your
                             </motion.span>
                             <motion.span
-                                className="block bg-gradient-to-r from-cyan-300 via-blue-400 to-indigo-400 bg-clip-text text-transparent"
+                                className="block bg-gradient-to-r from-blue-400 via-cyan-300 to-indigo-300 bg-clip-text text-transparent mt-2 pb-6"
                                 initial={{ opacity: 0, x: 50 }}
                                 animate={{ opacity: isLoaded ? 1 : 0, x: isLoaded ? 0 : 50 }}
                                 transition={{ delay: isLoaded ? 1.6 : 0, duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
                             >
-                                Future Today
+                                Future Today.
                             </motion.span>
                         </motion.h1>
 
@@ -224,19 +226,19 @@ export const HeroSection = () => {
                             initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 30 }}
                             transition={{ delay: isLoaded ? 1.8 : 0, duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
-                            className="text-lg md:text-xl text-gray-200 leading-relaxed mb-10 max-w-xl"
+                            className="text-lg md:text-xl text-slate-300 font-medium leading-relaxed mb-12 max-w-xl"
                             data-testid="hero-subheadline"
                         >
                             <motion.span
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: isLoaded ? 1 : 0 }}
                                 transition={{ delay: isLoaded ? 1.9 : 0, duration: 0.6 }}
-                                className="block"
+                                className="block mb-4 text-white/90"
                             >
-                                Comprehensive insurance solutions designed to safeguard what matters most.
+                                Comprehensive insurance solutions tailored to perfectly safeguard what matters most to your family.
                             </motion.span>
                             <motion.span
-                                className="block text-cyan-300 font-semibold mt-2"
+                                className="inline-block px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-400/20 text-blue-300 text-sm font-semibold tracking-wide"
                                 initial={{ opacity: 0, scale: 0.8 }}
                                 animate={{ opacity: isLoaded ? 1 : 0, scale: isLoaded ? 1 : 0.8 }}
                                 transition={{ delay: isLoaded ? 2.1 : 0, duration: 0.6 }}
@@ -252,7 +254,7 @@ export const HeroSection = () => {
                             className="flex flex-col sm:flex-row gap-4"
                         >
                             <motion.button
-                                onClick={() => scrollToSection('#contact')}
+                                onClick={() => navigate('/contact')}
                                 className="px-8 py-4 bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white rounded-full font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-blue-500/25 flex items-center justify-center gap-2 group"
                                 data-testid="hero-cta-primary"
                                 initial={{ opacity: 0, scale: 0.8 }}
