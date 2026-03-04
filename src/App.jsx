@@ -26,12 +26,6 @@ function App() {
       // Show loader for first-time visitors
       setShowLoader(true);
       sessionStorage.setItem('loaderShown', 'true');
-
-      // Hide loader after animation
-      const timer = setTimeout(() => {
-        setShowLoader(false);
-      }, 3000); // Adjust timing based on your loader animation
-      return () => clearTimeout(timer);
     }
   }, []);
 
