@@ -118,7 +118,7 @@ export default function ServiceDrawer({
             {/* Sticky bottom CTA */}
             <div className="shrink-0 px-6 sm:px-8 py-5 border-t border-edge bg-cream">
               <div className="flex items-center gap-4">
-                <Button variant="primary" size="md" href="#quote">
+                <Button variant="primary" size="md" href="https://cal.com/nityam-dixit-opchjp/30min" onClick={onClose}>
                   Get a Free Quote
                 </Button>
                 <button

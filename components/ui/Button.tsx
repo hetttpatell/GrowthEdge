@@ -55,7 +55,7 @@ export default function Button({
     if (isExternal) {
       return (
         <motion.div {...motionProps} className="inline-block">
-          <a href={href} target="_blank" rel="noopener noreferrer" className={classes}>
+          <a href={href} target="_blank" rel="noopener noreferrer" className={classes} onClick={onClick}>
             {children}
           </a>
         </motion.div>
@@ -63,7 +63,7 @@ export default function Button({
     }
     return (
       <motion.div {...motionProps} className="inline-block">
-        <Link href={href} className={classes}>
+        <Link href={href} className={classes} onClick={onClick}>
           {children}
         </Link>
       </motion.div>

@@ -1,9 +1,10 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, Clock, Calendar, User } from "lucide-react";
+import { ArrowLeft, Clock, Calendar, User, Plus } from "lucide-react";
 import type { BlogPostMeta } from "@/lib/mdx";
 
 function formatDate(dateStr: string) {
@@ -12,6 +13,77 @@ function formatDate(dateStr: string) {
     month: "long",
     day: "numeric",
   });
+}
+
+function BlogFAQ({ faqs }: { faqs: { question: string; answer: string }[] }) {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const toggle = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
+  return (
+    <motion.section
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+      className="mx-auto max-w-4xl px-5 sm:px-8 lg:px-14 pb-16"
+    >
+      {/* Eyebrow label */}
+      <div className="flex items-center gap-2 mb-4">
+        <span className="w-2 h-2 rounded-full bg-olive" />
+        <span className="font-body text-xs font-semibold text-olive uppercase tracking-[0.2em]">
+          FAQ
+        </span>
+      </div>
+
+      {/* Section heading */}
+      <h2 className="font-heading text-2xl sm:text-3xl lg:text-4xl text-stone-800 mb-10 sm:mb-12 leading-snug">
+        Frequently Asked Questions
+      </h2>
+
+      {/* Accordion items */}
+      <div className="space-y-0">
+        {faqs.map((faq, index) => (
+          <div key={index} className="border-b border-edge">
+            <button
+              onClick={() => toggle(index)}
+              className="w-full flex items-center justify-between py-6 text-left cursor-pointer group"
+            >
+              <span className="font-body text-base sm:text-lg font-medium text-stone-800 pr-8 group-hover:text-olive transition-colors">
+                {faq.question}
+              </span>
+              <span
+                className={`shrink-0 w-8 h-8 rounded-full border border-edge flex items-center justify-center transition-all duration-300 ${
+                  openIndex === index
+                    ? "bg-charcoal text-white border-charcoal rotate-45"
+                    : "bg-transparent text-stone-800"
+                }`}
+              >
+                <Plus size={16} />
+              </span>
+            </button>
+            <AnimatePresence initial={false}>
+              {openIndex === index && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                  className="overflow-hidden"
+                >
+                  <p className="font-body text-sm sm:text-base text-muted leading-relaxed pb-6 pr-12">
+                    {faq.answer}
+                  </p>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        ))}
+      </div>
+    </motion.section>
+  );
 }
 
 export default function BlogLayout({
@@ -110,37 +182,7 @@ export default function BlogLayout({
 
       {/* FAQ Section with Schema */}
       {article.faqs.length > 0 && (
-        <motion.section
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mx-auto max-w-4xl px-5 sm:px-8 lg:px-14 pb-16"
-        >
-          <h2 className="font-heading text-2xl sm:text-3xl text-stone-800 mb-8">
-            Frequently Asked Questions
-          </h2>
-          <div className="space-y-4">
-            {article.faqs.map((faq, idx) => (
-              <details
-                key={idx}
-                className="faq-item group rounded-xl border border-edge bg-white overflow-hidden"
-              >
-                <summary className="flex items-center justify-between cursor-pointer px-5 sm:px-6 py-4 font-body font-medium text-stone-800 text-sm sm:text-base select-none">
-                  <span className="pr-4">{faq.question}</span>
-                  <span className="faq-icon text-olive text-xl transition-transform duration-300 shrink-0">
-                    +
-                  </span>
-                </summary>
-                <div className="px-5 sm:px-6 pb-5 pt-0">
-                  <p className="font-body text-sm text-muted leading-relaxed">
-                    {faq.answer}
-                  </p>
-                </div>
-              </details>
-            ))}
-          </div>
-        </motion.section>
+        <BlogFAQ faqs={article.faqs} />
       )}
 
       {/* CTA section */}

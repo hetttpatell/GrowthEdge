@@ -19,13 +19,15 @@ export default function Hero() {
             src={hero.backgroundImage}
             alt="Family enjoying life together"
             fill
-            className="object-cover object-center"
+            className="object-cover object-[65%_20%] sm:object-[60%_25%] md:object-center"
             priority
             sizes="100vw"
           />
-          {/* Warm overlay for text readability */}
-          {/* <div className="absolute inset-0 bg-linear-to-r from-cream/90 via-cream/50 to-transparent" />
-          <div className="absolute inset-0 bg-linear-to-t from-cream/40 to-transparent" /> */}
+          {/* Subtle top gradient for nav readability */}
+          {/* Mobile: full-width soft vignette at top */}
+          <div className="absolute inset-x-0 top-0 h-48 md:hidden pointer-events-none" style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.34) 0%, rgba(0,0,0,0.18) 25%, rgba(0,0,0,0.07) 55%, transparent 100%)' }} />
+          {/* Desktop: right-biased gradient where nav actions sit */}
+          <div className="absolute top-0 right-0 h-44 w-[70%] hidden md:block pointer-events-none" style={{ background: 'radial-gradient(ellipse 120% 100% at 90% 0%, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0.10) 40%, transparent 80%)' }} />
         </div>
 
         {/* Content — left-aligned text overlay */}
@@ -47,7 +49,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
-              className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-cream-dark leading-[1.08] tracking-tight"
+              className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white leading-[1.08] tracking-tight"
             >
               {hero.headline.split("\n").map((line, i) => (
                 <span key={i}>

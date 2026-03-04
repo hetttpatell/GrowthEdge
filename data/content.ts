@@ -17,7 +17,7 @@ export const siteContent: SiteContent = {
       "Expert insurance advisory services tailored to your life's needs. Let Growth Edge guide you to the right coverage.",
     primaryCTA: { label: "Get Your Quote", href: "https://cal.com/nityam-dixit-opchjp/30min" },
     secondaryCTA: { label: "Our Services", href: "#services" },
-    backgroundImage: "https://images.unsplash.com/photo-1511895426328-dc8714191300?w=1920&q=80",
+    backgroundImage: "/hero/Hero.png",
   },
 
   intro: {
@@ -67,7 +67,7 @@ export const siteContent: SiteContent = {
 
   trust: {
     headline: "Why Thousands Trust Growth Edge For Their Health Protection",
-    image: "https://images.unsplash.com/photo-1531983412531-1f49a365ffed?w=1200&q=80",
+    image: "/trust/why_us.png",
     stats: [
       { value: "400+", label: "Families Protected" },
       { value: "₹50Cr+", label: "Claims Settled" },
@@ -141,11 +141,11 @@ export const siteContent: SiteContent = {
       {
         title: "Services",
         links: [
-          { label: "Family Health Plans", href: "#" },
-          { label: "Individual Coverage", href: "#" },
-          { label: "Senior Care Plans", href: "#" },
-          { label: "Corporate Wellness", href: "#" },
-          { label: "Critical Illness", href: "#" },
+          { label: "Family Health Plans", href: "#services" },
+          { label: "Individual Coverage", href: "#services" },
+          { label: "Senior Care Plans", href: "#services" },
+          { label: "Corporate Wellness", href: "#services" },
+          { label: "Critical Illness", href: "#services" },
         ],
       },
       {
