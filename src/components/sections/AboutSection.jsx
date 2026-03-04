@@ -109,7 +109,7 @@ export const AboutSection = () => {
                             <img
                                 src="/Sarthak.jpeg"
                                 alt="Professional insurance agent"
-                                className="w-full h-[600px] object-cover transform group-hover:scale-100 transition-transform duration-300"
+                                className="w-full h-full object-cover transform group-hover:scale-100 transition-transform duration-300"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-[#0B1F3A]/70 via-transparent to-transparent" />
 
