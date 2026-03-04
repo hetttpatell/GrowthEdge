@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* Colors — warm, editorial light theme */
+  --color-cream: #F5F2EB;
+  --color-cream-dark: #EBE7DE;
+  --color-charcoal: #1A1A1A;
+  --color-dark: #111111;
+  --color-olive: #4A5D4A;
+  --color-olive-light: #5C705C;
+  --color-olive-dark: #3A4D3A;
+  --color-muted: #6B6B6B;
+  --color-muted-light: #999999;
+  --color-edge: #DDD9D0;
+  --color-white: #FFFFFF;
+
+  /* Fonts */
+  --font-heading: var(--font-poppins);
+  --font-body: var(--font-inter);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-charcoal);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+::selection {
+  background-color: var(--color-olive);
+  color: white;
+}
+
+/* Pixelated SVG rendering for checkered dividers */
+.pixelated {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  shape-rendering: crispEdges;
+}
+
+/* Hide scrollbar utility for carousels */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Checkered pattern divider */
+.checkered-divider {
+  background-image: repeating-conic-gradient(#1A1A1A 0% 25%, transparent 0% 50%);
+  background-size: 8px 8px;
+}
+
+/* FAQ accordion styles */
+.faq-item[open] summary .faq-icon {
+  transform: rotate(45deg);
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary::marker {
+  display: none;
+  content: '';
+}
