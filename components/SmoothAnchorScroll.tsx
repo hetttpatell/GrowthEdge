@@ -27,6 +27,8 @@ export default function SmoothAnchorScroll() {
       if (!isHashOnly && !isSlashHash) return;
 
       const hash = isHashOnly ? href : href.slice(1); // "#blog"
+      // Prevent invalid selector (e.g., just "#")
+      if (!hash || hash === "#") return;
       const target = document.querySelector(hash);
       if (!target) return;
 
