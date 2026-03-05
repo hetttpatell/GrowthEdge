@@ -67,18 +67,14 @@ export const Footer = () => {
         ],
         Resources: [
             { label: 'Claims Process', href: '#' },
-            { label: 'FAQ', href: '#' },
             { label: 'Blog', href: '#' },
             { label: 'Career', href: '#' },
         ],
     };
+    // Future implementation
+    // const socialLinks = [
 
-    const socialLinks = [
-        { icon: Facebook, href: '#', label: 'Facebook' },
-        { icon: Twitter, href: '#', label: 'Twitter' },
-        { icon: Linkedin, href: '#', label: 'LinkedIn' },
-        { icon: Instagram, href: '#', label: 'Instagram' },
-    ];
+    // ];
 
     return (
         <footer className="bg-[#0B1F3A] text-white" data-testid="footer">
@@ -87,14 +83,16 @@ export const Footer = () => {
                     {/* Brand */}
                     <div className="lg:col-span-2">
                         <div className="flex items-center gap-3 mb-4">
-                            <img src="/logo.png" alt="Growth Edge" className="h-12 w-12 object-contain" />
-                            <span className="text-2xl font-bold font-['Outfit'] tracking-tighter">Growth Edge</span>
+                            <div className="flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 bg-white rounded-lg p-2 sm:p-3">
+                                <img src="/logo.png" alt="Growth Edge" className="h-10 w-10 sm:h-10 sm:w-10 object-contain" />
+                            </div>
+                            <span className="text-xl sm:text-2xl font-bold font-['Outfit'] tracking-tighter">Growth Edge</span>
                         </div>
                         <p className="text-slate-300 mb-6 leading-relaxed">
-                            Securing your legacy and ensuring your future with trusted insurance solutions for over 25 years.
+                            Securing your legacy and ensuring your future with trusted insurance solutions for over 4+ years.
                         </p>
                         <div className="flex gap-4">
-                            {socialLinks.map((social) => {
+                            {/* {socialLinks.map((social) => {
                                 const Icon = social.icon;
                                 return (
                                     <a
@@ -107,7 +105,7 @@ export const Footer = () => {
                                         <Icon size={20} />
                                     </a>
                                 );
-                            })}
+                            })} */}
                         </div>
                     </div>
 
