@@ -5,7 +5,9 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
+
 import { siteContent } from "@/data/content";
+import Image from "next/image";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -59,6 +61,14 @@ export default function Navbar() {
           <div className="flex items-center justify-between h-16 sm:h-20">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2 relative z-10">
+              <Image
+                src="/Growth Edge logo.png"
+                alt="Growth Edge Logo"
+                width={50}
+                height={50}
+                className="rounded-md"
+                priority
+              />
               <span className={`font-heading text-xl sm:text-2xl transition-colors duration-300 ${isScrolled || !isHome ? 'text-stone-800' : 'text-white'}`}>
                 Growth Edge
               </span>
@@ -118,9 +128,19 @@ export default function Navbar() {
             >
               <div className="p-6">
                 <div className="flex justify-between items-center mb-10">
-                  <span className="font-heading text-xl text-stone-800">
-                    Growth Edge
-                  </span>
+                  <div className="flex items-center gap-2 -ml-1.5">
+                    <Image
+                      src="/Growth Edge logo.png"
+                      alt="Growth Edge Logo"
+                      width={50}
+                      height={50}
+                      className="rounded-md"
+                      priority
+                    />
+                    <span className="font-heading text-xl text-stone-800">
+                      Growth Edge
+                    </span>
+                  </div>
                   <button
                     onClick={() => setIsMobileMenuOpen(false)}
                     className="p-2 text-stone-800 hover:text-olive transition-colors"

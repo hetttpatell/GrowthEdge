@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Symmetrical Red Pinwheel</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #1a1a1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="c"></canvas>
+
+    <script>
+        const canvas = document.getElementById('c');
+        const ctx = canvas.getContext('2d');
+
+        const R = 280;
+        const COUNT = 8;
+        const angleRad = (30 * Math.PI) / 180;
+        const px = R * Math.sin(angleRad);
+        const py = -R * Math.cos(angleRad);
+
+        // Compute the actual bounding box of all petals
+        function petalBounds() {
+            let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+            for (let i = 0; i < COUNT; i++) {
+                const rot = (i * 45 * Math.PI) / 180;
+                const cos = Math.cos(rot), sin = Math.sin(rot);
+                // Sample points on the semicircle arc
+                for (let a = -Math.PI/2; a <= Math.PI/2; a += 0.05) {
+                    const x = R * Math.cos(a) - px;
+                    const y = R * Math.sin(a) - py;
+                    const wx = x * cos - y * sin;
+                    const wy = x * sin + y * cos;
+                    minX = Math.min(minX, wx); maxX = Math.max(maxX, wx);
+                    minY = Math.min(minY, wy); maxY = Math.max(maxY, wy);
+                }
+                // Also include the flat edge endpoints
+                [[0, -R], [0, R]].forEach(([ex, ey]) => {
+                    const tx = ex - px, ty = ey - py;
+                    const wx = tx * cos - ty * sin;
+                    const wy = tx * sin + ty * cos;
+                    minX = Math.min(minX, wx); maxX = Math.max(maxX, wx);
+                    minY = Math.min(minY, wy); maxY = Math.max(maxY, wy);
+                });
+            }
+            return { minX, minY, maxX, maxY };
+        }
+
+        const pad = 20;
+        const bounds = petalBounds();
+        const W = Math.ceil(bounds.maxX - bounds.minX) + pad * 2;
+        const H = Math.ceil(bounds.maxY - bounds.minY) + pad * 2;
+        // Center offset: world origin maps to this canvas point
+        const ox = -bounds.minX + pad;
+        const oy = -bounds.minY + pad;
+
+        canvas.width = W;
+        canvas.height = H;
+
+        // Draw background
+        ctx.fillStyle = '#1a1a1a';
+        ctx.fillRect(0, 0, W, H);
+
+        // For each petal: draw it, erase overlaps with all other petals
+        const finalCanvas = document.createElement('canvas');
+        finalCanvas.width = W; finalCanvas.height = H;
+        const fctx = finalCanvas.getContext('2d');
+
+        for (let i = 0; i < COUNT; i++) {
+            const tempCanvas = document.createElement('canvas');
+            tempCanvas.width = W; tempCanvas.height = H;
+            const tctx = tempCanvas.getContext('2d');
+
+            const drawPetal = (context, idx) => {
+                const rot = (idx * 45 * Math.PI) / 180;
+                context.save();
+                context.translate(ox, oy);
+                context.rotate(rot);
+                context.translate(-px, -py);
+                context.beginPath();
+                context.moveTo(0, -R);
+                context.arc(0, 0, R, -Math.PI / 2, Math.PI / 2, false);
+                context.closePath();
+                context.fill();
+                context.restore();
+            };
+
+            // Draw this petal
+            tctx.fillStyle = '#c83232';
+            drawPetal(tctx, i);
+
+            // Erase all other petals
+            tctx.globalCompositeOperation = 'destination-out';
+            tctx.fillStyle = 'black';
+            for (let j = 0; j < COUNT; j++) {
+                if (j === i) continue;
+                drawPetal(tctx, j);
+            }
+
+            fctx.drawImage(tempCanvas, 0, 0);
+        }
+
+        ctx.drawImage(finalCanvas, 0, 0);
+    </script>
+</body>
+</html>
