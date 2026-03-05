@@ -1,21 +1,8 @@
 import type { Metadata, Viewport } from "next";
-import { DM_Serif_Display, DM_Sans, Inter, Poppins } from "next/font/google";
+import { Inter, Poppins } from "next/font/google";
 import { SITE_URL, SITE_NAME, seo } from "@/lib/seo";
+import SmoothAnchorScroll from "@/components/SmoothAnchorScroll";
 import "./globals.css";
-
-const dmSerif = DM_Serif_Display({
-  variable: "--font-dm-serif",
-  subsets: ["latin"],
-  weight: ["400"],
-  display: "swap",
-});
-
-const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  display: "swap",
-});
 
 const inter = Inter({
   variable: "--font-inter",
@@ -27,7 +14,7 @@ const inter = Inter({
 const poppins = Poppins({
   variable: "--font-poppins",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["500", "600"],
   display: "swap",
 });
 
@@ -115,7 +102,8 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <meta name="format-detection" content="telephone=yes" />
       </head>
-      <body suppressHydrationWarning className={`${dmSerif.variable} ${dmSans.variable} ${inter.variable} ${poppins.variable} antialiased`}>
+      <body suppressHydrationWarning className={`${inter.variable} ${poppins.variable} antialiased`}>
+        <SmoothAnchorScroll />
         {children}
         {/* Auto-show / auto-hide scrollbar on scroll */}
         <script

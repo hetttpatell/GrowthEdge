@@ -66,7 +66,7 @@ export const siteContent: SiteContent = {
   ],
 
   trust: {
-    headline: "Why Thousands Trust Growth Edge For Their Health Protection",
+    headline: "Why People Trust Growth Edge For Their Health Protection",
     image: "/trust/why_us.png",
     stats: [
       { value: "400+", label: "Families Protected" },

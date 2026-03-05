@@ -59,9 +59,9 @@ export default function Footer() {
           {/* Link columns */}
           {footer.columns.map((column) => (
             <div key={column.title}>
-              <h4 className="font-body font-semibold text-sm text-stone-800 uppercase tracking-wider mb-4">
+              <h3 className="font-body font-semibold text-sm text-stone-800 uppercase tracking-wider mb-4">
                 {column.title}
-              </h4>
+              </h3>
               <ul className="space-y-3">
                 {column.links.map((link) => (
                   <li key={link.label}>

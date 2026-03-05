@@ -48,11 +48,8 @@ export default function Navbar() {
 
   return (
     <>
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className={`fixed left-0 right-0 z-50 transition-all duration-300 ${
+      <nav
+        className={`fixed left-0 right-0 z-50 transition-all duration-300 animate-nav-slide-down ${
           isScrolled || !isHome
             ? "top-0 bg-cream/60 backdrop-blur-md shadow-sm"
             : "top-2 bg-transparent"
@@ -98,7 +95,7 @@ export default function Navbar() {
             </button>
           </div>
         </div>
-      </motion.nav>
+      </nav>
 
       {/* Mobile Menu Overlay */}
       <AnimatePresence>

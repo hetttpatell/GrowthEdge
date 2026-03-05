@@ -1,14 +1,31 @@
+import dynamic from "next/dynamic";
 import Navbar from "@/components/layout/Navbar";
 import Hero from "@/components/sections/Hero";
-import Intro from "@/components/sections/Benefits";
-import Services from "@/components/sections/Services";
-import Trust from "@/components/sections/Trust";
-import ExpertTips from "@/components/sections/ExpertTips";
-import FAQ from "@/components/sections/FAQ";
-import CTABlock from "@/components/sections/CTABlock";
-import Footer from "@/components/layout/Footer";
 import { siteContent } from "@/data/content";
 import { SITE_URL, SITE_NAME, seo, organizationJsonLd } from "@/lib/seo";
+
+// Below-fold components — lazy loaded to reduce initial JS bundle
+const Intro = dynamic(() => import("@/components/sections/Benefits"), {
+  ssr: true,
+});
+const Services = dynamic(() => import("@/components/sections/Services"), {
+  ssr: true,
+});
+const Trust = dynamic(() => import("@/components/sections/Trust"), {
+  ssr: true,
+});
+const ExpertTips = dynamic(() => import("@/components/sections/ExpertTips"), {
+  ssr: true,
+});
+const FAQ = dynamic(() => import("@/components/sections/FAQ"), {
+  ssr: true,
+});
+const CTABlock = dynamic(() => import("@/components/sections/CTABlock"), {
+  ssr: true,
+});
+const Footer = dynamic(() => import("@/components/layout/Footer"), {
+  ssr: true,
+});
 
 function HomeJsonLd() {
   const org = organizationJsonLd();

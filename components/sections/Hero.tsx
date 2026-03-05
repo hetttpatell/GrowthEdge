@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
@@ -21,6 +20,7 @@ export default function Hero() {
             fill
             className="object-cover object-[65%_20%] sm:object-[60%_25%] md:object-center"
             priority
+            fetchPriority="high"
             sizes="100vw"
           />
           {/* Subtle top gradient for nav readability */}
@@ -34,22 +34,15 @@ export default function Hero() {
         <div className="relative z-10 px-4 sm:px-8 lg:px-12 pt-28 pb-10 sm:pb-14 w-full">
           <div className="max-w-2xl">
             {/* Tagline pill */}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: "easeOut", delay: 0.15 }}
-              className="mb-6 sm:mb-8"
-            >
+            <div className="mb-6 sm:mb-8 animate-hero-fade-up" style={{ animationDelay: '0.15s' }}>
               <span className="inline-flex items-center gap-2 font-body text-xs sm:text-sm text-cream-dark bg-neutral-800/30 backdrop-blur-sm rounded-full px-4 py-2 border border-charcoal/8">
                 {hero.tagline}
               </span>
-            </motion.div>
+            </div>
 
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
-              className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white leading-[1.08] tracking-tight"
+            <h1
+              className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white leading-[1.08] tracking-tight animate-hero-fade-up"
+              style={{ animationDelay: '0.3s' }}
             >
               {hero.headline.split("\n").map((line, i) => (
                 <span key={i}>
@@ -57,51 +50,44 @@ export default function Hero() {
                   {i < hero.headline.split("\n").length - 1 && <br />}
                 </span>
               ))}
-            </motion.h1>
+            </h1>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut", delay: 0.7 }}
-              className="mt-8 sm:mt-10 flex flex-wrap items-center gap-3 sm:gap-4"
+            <div
+              className="mt-8 sm:mt-10 flex flex-wrap items-center gap-3 sm:gap-4 animate-hero-fade-up"
+              style={{ animationDelay: '0.7s' }}
             >
               {/* Primary CTA — styled with arrow circle to match reference */}
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                className="inline-block"
-              >
+              <div className="inline-block hover:scale-[1.01] active:scale-[0.98] transition-transform">
                 {hero.primaryCTA.href.startsWith("http") ? (
                   <a
                     href={hero.primaryCTA.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2.5 font-body font-semibold text-sm sm:text-base bg-white text-stone-800 rounded-full pl-6 sm:pl-8 pr-1.5 sm:pr-2 py-1.5 sm:py-2 transition-colors duration-300"
+                    className="group inline-flex items-center gap-2.5 font-body font-semibold text-sm sm:text-base bg-white text-stone-800 hover:bg-charcoal hover:text-white rounded-full pl-6 sm:pl-8 pr-1.5 sm:pr-2 py-1.5 sm:py-2 transition-colors duration-300"
                   >
                     {hero.primaryCTA.label}
-                    <span className="flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-charcoal/80">
+                    <span className="flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-charcoal/80 group-hover:bg-white/20 transition-colors duration-300">
                       <ArrowUpRight className="w-5 h-5 text-white" />
                     </span>
                   </a>
                 ) : (
                   <Link
                     href={hero.primaryCTA.href}
-                    className="inline-flex items-center gap-2.5 font-body font-semibold text-sm sm:text-base bg-white text-stone-800 rounded-full pl-6 sm:pl-8 pr-1.5 sm:pr-2 py-1.5 sm:py-2 transition-colors duration-300"
+                    className="group inline-flex items-center gap-2.5 font-body font-semibold text-sm sm:text-base bg-white text-stone-800 hover:bg-charcoal hover:text-white rounded-full pl-6 sm:pl-8 pr-1.5 sm:pr-2 py-1.5 sm:py-2 transition-colors duration-300"
                   >
                     {hero.primaryCTA.label}
-                    <span className="flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-charcoal/80">
+                    <span className="flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-charcoal/80 group-hover:bg-white/20 transition-colors duration-300">
                       <ArrowUpRight className="w-5 h-5 text-white" />
                     </span>
                   </Link>
                 )}
-              </motion.div>
+              </div>
 
               {/* Secondary CTA */}
               <Button variant="outline" size="lg" href={hero.secondaryCTA.href} className="text-white border-white border-[1px] hover:bg-white/10 hover:border-white/10">
                 {hero.secondaryCTA.label}
               </Button>
-            </motion.div>
+            </div>
           </div>
         </div>
       </div>
