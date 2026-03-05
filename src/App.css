@@ -5,6 +5,16 @@
   position: relative;
 }
 
+/* Smooth scrolling for the entire application */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Prevent scroll jump during page transitions */
+body {
+  overflow-x: hidden;
+}
+
 img {
   max-width: 100%;
   height: auto;

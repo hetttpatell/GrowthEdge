@@ -14,6 +14,7 @@ import { ServicesSection } from './components/sections/ServicesSection';
 import { AwardsPage } from './components/pages/AwardsPage';
 import { ContactPage } from './components/pages/ContactPage';
 import { AboutPage } from './components/pages/AboutPage';
+import { PageTransition } from './components/transitions/PageTransition';
 
 function App() {
   const [showLoader, setShowLoader] = useState(false);
@@ -50,11 +51,31 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/services" element={<ServicesPage />} />
-        <Route path="/awards" element={<AwardsPage />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/" element={
+          <PageTransition>
+            <HomePage />
+          </PageTransition>
+        } />
+        <Route path="/services" element={
+          <PageTransition>
+            <ServicesPage />
+          </PageTransition>
+        } />
+        <Route path="/awards" element={
+          <PageTransition>
+            <AwardsPage />
+          </PageTransition>
+        } />
+        <Route path="/about" element={
+          <PageTransition>
+            <AboutPage />
+          </PageTransition>
+        } />
+        <Route path="/contact" element={
+          <PageTransition>
+            <ContactPage />
+          </PageTransition>
+        } />
       </Routes>
     </Router>
   );

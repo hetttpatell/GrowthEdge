@@ -4,6 +4,7 @@ import { Menu, X } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useOptimizedScroll } from '../../hooks/useOptimizedScroll';
 import { fadeInDown, slideInRight } from '../../utils/animationVariants';
+import { useSmoothNavigation } from '../../hooks/useSmoothNavigation';
 
 export const Navbar = () => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -12,6 +13,7 @@ export const Navbar = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const { scrollY, scrolled } = useOptimizedScroll(50);
+    const { smoothNavigate } = useSmoothNavigation();
 
 
     useEffect(() => {
@@ -96,25 +98,20 @@ export const Navbar = () => {
 
     const handleNavigation = (e, href) => {
         if (href === '/services') {
-            navigate('/services');
+            smoothNavigate('/services');
             setMobileMenuOpen(false);
-            window.scrollTo(0, 0);
         } else if (href === '/awards') {
-            navigate('/awards');
+            smoothNavigate('/awards');
             setMobileMenuOpen(false);
-            window.scrollTo(0, 0);
         } else if (href === '/contact') {
-            navigate('/contact');
+            smoothNavigate('/contact');
             setMobileMenuOpen(false);
-            window.scrollTo(0, 0);
         } else if (href === '/about') {
-            navigate('/about');
+            smoothNavigate('/about');
             setMobileMenuOpen(false);
-            window.scrollTo(0, 0);
         } else if (href === '#home') {
-            navigate('/');
+            smoothNavigate('/');
             setMobileMenuOpen(false);
-            window.scrollTo(0, 0);
         } else {
             e.preventDefault();
             const element = document.querySelector(href);
@@ -122,9 +119,8 @@ export const Navbar = () => {
                 element.scrollIntoView({ behavior: 'smooth' });
                 setMobileMenuOpen(false);
             } else {
-                navigate('/');
+                smoothNavigate('/');
                 setMobileMenuOpen(false);
-                window.scrollTo(0, 0);
             }
         }
     };

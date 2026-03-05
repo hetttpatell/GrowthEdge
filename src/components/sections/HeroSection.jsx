@@ -3,12 +3,12 @@ import { useEffect, useState } from 'react';
 import { Shield, TrendingUp, Award, Heart, ArrowRight } from 'lucide-react';
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 import { fadeInUp, scaleIn, staggerContainer, staggerItem, smoothTransition } from '../../utils/animationVariants';
-import { useNavigate } from 'react-router-dom';
+import { useSmoothNavigation } from '../../hooks/useSmoothNavigation';
 
 export const HeroSection = () => {
     const [isLoaded, setIsLoaded] = useState(false);
     const { targetRef, hasIntersected } = useIntersectionObserver({ threshold: 0.1 });
-    const navigate = useNavigate();
+    const { smoothNavigate } = useSmoothNavigation();
 
     useEffect(() => {
         const handleLoaderComplete = () => {
@@ -254,7 +254,7 @@ export const HeroSection = () => {
                             className="flex flex-col sm:flex-row gap-4"
                         >
                             <motion.button
-                                onClick={() => navigate('/contact')}
+                                onClick={() => smoothNavigate('/contact')}
                                 className="px-8 py-4 bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white rounded-full font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-blue-500/25 flex items-center justify-center gap-2 group"
                                 data-testid="hero-cta-primary"
                                 initial={{ opacity: 0, scale: 0.8 }}
