@@ -193,7 +193,7 @@ export const HeroSection = () => {
                                 transition={{ delay: isLoaded ? 1.2 : 0, duration: 0.6 }}
                                 className="text-sm font-semibold tracking-widest uppercase text-cyan-300"
                             >
-                                Trusted Since 1999
+                                Trusted Since 2015
                             </motion.div>
                         </motion.div>
 
