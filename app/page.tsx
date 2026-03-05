@@ -55,7 +55,7 @@ function HomeJsonLd() {
       url: SITE_URL,
       image: `${SITE_URL}/og/home`,
       telephone: "+91-83069-34343",
-      email: "hello@growthedge.in",
+      email: "info.growthedgeinvestment@gmail.com",
       priceRange: "Free Consultation",
       address: {
         "@type": "PostalAddress",

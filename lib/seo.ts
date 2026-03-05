@@ -92,7 +92,7 @@ export function organizationJsonLd() {
       "@type": "ContactPoint",
       contactType: "customer service",
       telephone: "+91-83069-34343",
-      email: "hello@growthedge.in",
+      email: "info.growthedgeinvestment@gmail.com",
       availableLanguage: ["English", "Hindi", "Gujarati"],
     },
     sameAs: [

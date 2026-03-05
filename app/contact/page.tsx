@@ -72,11 +72,11 @@ export default function ContactPage() {
               {/* Contact details */}
               <div className="mt-8 space-y-3.5 w-full max-w-sm">
                 <a
-                  href="mailto:hello@growthedge.in"
+                  href="mailto:info.growthedgeinvestment@gmail.com"
                   className="flex items-center gap-3 font-body text-sm text-muted hover:text-olive transition-colors"
                 >
                   <Mail size={16} className="shrink-0 text-olive" />
-                  hello@growthedge.in
+                  info.growthedgeinvestment@gmail.com
                 </a>
                 <a
                   href="tel:+918306934343"

@@ -15,7 +15,7 @@ export const siteContent: SiteContent = {
     tagline: "Your health, your family, our commitment to care.",
     subheadline:
       "Expert insurance advisory services tailored to your life's needs. Let Growth Edge guide you to the right coverage.",
-    primaryCTA: { label: "Get Your Quote", href: "https://cal.com/nityam-dixit-opchjp/30min" },
+    primaryCTA: { label: "Get Your Quote", href: "/contact" },
     secondaryCTA: { label: "Our Services", href: "#services" },
     backgroundImage: "/hero/Hero.png",
   },
@@ -168,7 +168,7 @@ export const siteContent: SiteContent = {
       },
     ],
     contactInfo: {
-      email: "hello@growthedge.in",
+      email: "info.growthedgeinvestment@gmail.com",
       phone: "+91 83069 34343",
       address: "Ahmedabad, Gujarat, India",
     },

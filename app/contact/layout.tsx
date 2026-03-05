@@ -59,7 +59,7 @@ function ContactJsonLd() {
       jobTitle: "Insurance Advisor & Founder",
       worksFor: { "@type": "Organization", name: SITE_NAME, url: SITE_URL },
       url: `${SITE_URL}/contact`,
-      email: "hello@growthedge.in",
+      email: "info.growthedgeinvestment@gmail.com",
       telephone: "+91-83069-34343",
       address: {
         "@type": "PostalAddress",
@@ -90,7 +90,7 @@ function ContactJsonLd() {
           "@type": "ContactPoint",
           contactType: "customer service",
           telephone: "+91-83069-34343",
-          email: "hello@growthedge.in",
+          email: "info.growthedgeinvestment@gmail.com",
           availableLanguage: ["English", "Hindi", "Gujarati"],
           areaServed: { "@type": "Country", name: "India" },
         },
